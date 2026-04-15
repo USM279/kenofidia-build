@@ -1,0 +1,198 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Morph hero fills the section fully */
+.hero--morph {
+  padding: 0;
+  display: block;
+}
+.hero--morph > div {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Panels ──────────────────────────────────────────────────── */
+.hero-panels {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+}
+
+.hero-panel {
+  position: relative;
+  overflow: hidden;
+  clip-path: inset(0 100% 0 0);
+}
+
+.hero-panel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.hero-panel-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 8, 0.55);
+}
+
+/* Vignette over panels */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(10,10,8,0.9) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% 0%,   rgba(10,10,8,0.6) 0%, transparent 60%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── Content ─────────────────────────────────────────────────── */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  width: 100%;
+}
+
+.hero-eyebrow {
+  opacity: 0;
+  margin-bottom: 2rem;
+}
+
+.hero-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 7.5vw, 7rem);
+  font-weight: 300;
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+}
+
+.hero-line {
+  display: block;
+}
+
+.hero-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  margin-right: 0.25em;
+}
+
+.hero-word-inner {
+  display: inline-block;
+  transform: translateY(110%);
+}
+
+.hero-desc {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--white-dim);
+  line-height: 1.7;
+  max-width: 36ch;
+  opacity: 0;
+  margin-bottom: 2.5rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.875rem 2.25rem;
+  background: var(--gold);
+  color: var(--bg);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: background 0.3s, transform 0.3s var(--ease-out-expo);
+}
+.btn-primary:hover {
+  background: #d4b07a;
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  display: inline-block;
+  padding: 0.875rem 2.25rem;
+  border: 1px solid var(--border);
+  color: var(--white-dim);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: border-color 0.3s, color 0.3s, transform 0.3s var(--ease-out-expo);
+}
+.btn-ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+/* ── Scroll hint ─────────────────────────────────────────────── */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-scroll-line {
+  display: block;
+  width: 1px;
+  height: 50px;
+  background: var(--gold);
+  transform-origin: top;
+  animation: scrollLine 1.8s var(--ease-out-expo) infinite 1s;
+}
+
+.hero-scroll-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+
+@keyframes scrollLine {
+  0%   { transform: scaleY(0); opacity: 1; }
+  60%  { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-content { padding: 0 1.5rem; }
+  .hero-headline { font-size: clamp(2.8rem, 10vw, 4rem); }
+  .hero-panels { grid-template-columns: 1fr 1fr; }
+  .hero-panel:last-child { display: none; }
+  .hero-buttons { flex-direction: column; align-items: flex-start; }
+}

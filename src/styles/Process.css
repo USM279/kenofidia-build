@@ -1,0 +1,126 @@
+.process {
+  padding: 8rem 0;
+  border-top: 1px solid var(--border-dim);
+}
+
+.process-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+/* ── Left ────────────────────────────────────────────────────── */
+.process-head {
+  margin-bottom: 3rem;
+}
+
+.process-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 4vw, 3.75rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.process-title-line {
+  display: block;
+  overflow: hidden;
+}
+
+.process-steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.process-step {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--border-dim);
+  opacity: 0;
+  cursor: default;
+}
+
+.process-step-top {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.process-step-num {
+  font-size: 0.625rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.process-step-title {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  font-weight: 400;
+  color: var(--white);
+  transition: color 0.3s;
+}
+.process-step:hover .process-step-title { color: var(--gold); }
+
+.process-step-desc {
+  font-size: 0.875rem;
+  color: var(--white-dim);
+  line-height: 1.7;
+  max-width: 42ch;
+  padding-left: calc(0.625rem + 1rem + 0.625rem);
+}
+
+/* ── Right sticky ────────────────────────────────────────────── */
+.process-right {
+  position: relative;
+}
+
+.process-sticky {
+  position: sticky;
+  top: 8rem;
+}
+
+.process-img-stack {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+
+.process-img-frame {
+  position: absolute;
+  inset: 0;
+  will-change: opacity;
+}
+
+.process-img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.process-img-border {
+  position: absolute;
+  inset: 1rem;
+  border: 1px solid var(--border);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .process-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .process-right { display: none; }
+}
+@media (max-width: 600px) {
+  .process-inner { padding: 0 1.5rem; }
+}

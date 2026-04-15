@@ -1,0 +1,91 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 3rem;
+  transition: background 0.4s var(--ease-in-out),
+              backdrop-filter 0.4s,
+              padding 0.4s var(--ease-in-out),
+              border-color 0.4s;
+  border-bottom: 1px solid transparent;
+}
+
+.nav--scrolled {
+  background: rgba(10, 10, 8, 0.75);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  padding: 1rem 3rem;
+  border-color: var(--border-dim);
+}
+
+.nav-logo-img {
+  height: 44px;
+  width: auto;
+  display: block;
+  opacity: 0.92;
+  transition: opacity 0.3s var(--ease-out-expo), transform 0.3s var(--ease-out-expo);
+}
+.nav-logo:hover .nav-logo-img {
+  opacity: 1;
+  transform: scale(1.04);
+}
+.nav--scrolled .nav-logo-img {
+  height: 38px;
+  transition: height 0.4s var(--ease-in-out), opacity 0.3s, transform 0.3s;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  position: relative;
+  transition: color 0.3s;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s var(--ease-out-expo);
+}
+.nav-link:hover { color: var(--white); }
+.nav-link:hover::after { width: 100%; }
+
+.nav-cta {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.625rem 1.5rem;
+  border: 1px solid var(--border);
+  color: var(--gold);
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.nav-cta:hover {
+  background: var(--gold);
+  color: var(--bg);
+  border-color: var(--gold);
+}
+
+@media (max-width: 768px) {
+  .nav { padding: 1.25rem 1.5rem; }
+  .nav--scrolled { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .nav-cta { display: none; }
+}

@@ -1,0 +1,78 @@
+.cta {
+  padding: 10rem 0 8rem;
+  border-top: 1px solid var(--border-dim);
+  text-align: center;
+  position: relative;
+}
+
+.cta-line {
+  width: 1px;
+  height: 80px;
+  background: var(--gold);
+  margin: 0 auto 4rem;
+  transform-origin: top;
+  transform: scaleY(0);
+}
+
+.cta-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.cta-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 6.5vw, 6rem);
+  font-weight: 300;
+  line-height: 1.0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cta-line-wrap {
+  display: block;
+  overflow: hidden;
+}
+
+.cta-sub {
+  font-size: 0.9375rem;
+  color: var(--white-dim);
+  line-height: 1.7;
+  opacity: 0;
+}
+
+.cta-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.5vw, 1.875rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold-dim);
+  padding-bottom: 0.2em;
+  opacity: 0;
+  transition: color 0.3s, border-color 0.3s;
+}
+.cta-email:hover {
+  color: var(--white);
+  border-color: var(--white-dim);
+}
+
+.cta-email-arrow {
+  font-style: normal;
+  font-size: 0.8em;
+  transition: transform 0.3s var(--ease-out-expo);
+}
+.cta-email:hover .cta-email-arrow { transform: translate(3px, -3px); }
+
+@media (max-width: 600px) {
+  .cta-inner { padding: 0 1.5rem; }
+  .cta-headline { font-size: clamp(2.5rem, 10vw, 3.5rem); }
+}
