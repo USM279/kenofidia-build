@@ -1,6 +1,13 @@
 /* ─── Tailwind v4 ────────────────────────────────────────────── */
 @import "tailwindcss";
 
+/* ─── Tailwind theme tokens (for shadcn-style components) ───── */
+@theme {
+  --color-foreground:       #F5F0E8;
+  --color-background:       #0A0A08;
+  --color-muted-foreground: #9a9490;
+}
+
 /* ─── CSS Variables ─────────────────────────────────────────── */
 :root {
   --bg:        #0A0A08;

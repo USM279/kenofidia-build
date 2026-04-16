@@ -116,7 +116,10 @@
 
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .portfolio-inner { padding: 0 1.5rem; }
+  .portfolio { padding-top: 5rem; }
+  .portfolio-inner { padding: 0 1.25rem; }
+  .portfolio-title { font-size: clamp(2rem, 9vw, 3rem); }
+  .portfolio-head  { margin-bottom: 2rem; }
   .portfolio-grid {
     grid-template-columns: 1fr;
     grid-template-areas:

@@ -243,8 +243,29 @@ export default function ScrollMorphHero() {
     >
       <div className="flex h-full w-full flex-col items-center justify-center perspective-1000">
 
+        {/* ── Intro text backdrop vignette ── */}
+        <motion.div
+          className="absolute pointer-events-none"
+          animate={
+            introPhase === "circle" && morphValue < 0.5
+              ? { opacity: 1 - morphValue * 2 }
+              : { opacity: 0 }
+          }
+          transition={{ duration: 0.8 }}
+          style={{
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "65vw",
+            height: "35vh",
+            background:
+              "radial-gradient(ellipse at center, rgba(10,10,8,0.88) 30%, transparent 75%)",
+            zIndex: 19,
+          }}
+        />
+
         {/* ── Intro text (fades as morph progresses) ── */}
-        <div className="absolute z-0 flex flex-col items-center justify-center text-center pointer-events-none top-1/2 -translate-y-1/2 px-4">
+        <div className="absolute z-20 flex flex-col items-center justify-center text-center pointer-events-none top-1/2 -translate-y-1/2 px-4">
           <motion.h1
             initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
             animate={
@@ -253,7 +274,11 @@ export default function ScrollMorphHero() {
                 : { opacity: 0, filter: "blur(10px)" }
             }
             transition={{ duration: 1 }}
-            style={{ fontFamily: "var(--font-serif)", color: "var(--white)" }}
+            style={{
+              fontFamily: "var(--font-serif)",
+              color: "var(--white)",
+              textShadow: "0 0 60px rgba(10,10,8,0.95), 0 2px 12px rgba(10,10,8,0.8)",
+            }}
             className="text-3xl md:text-5xl font-light tracking-tight"
           >
             We make restaurants{" "}
@@ -277,48 +302,62 @@ export default function ScrollMorphHero() {
         {/* ── Arc content (fades in when arc forms) ── */}
         <motion.div
           style={{ opacity: contentOpacity, y: contentY }}
-          className="absolute top-[22%] z-10 flex flex-col items-center justify-center text-center pointer-events-none px-6"
+          className="absolute top-[22%] z-10 flex flex-col items-center justify-center text-center pointer-events-none px-8"
         >
-          <p
-            className="section-label mb-4 justify-center"
-          >
+          {/* Eyebrow label */}
+          <p className="section-label justify-center" style={{ marginBottom: "1.75rem" }}>
             Restaurant Photography &amp; Marketing
           </p>
+
+          {/* Main heading */}
           <h2
             style={{
               fontFamily: "var(--font-serif)",
               color: "var(--white)",
               fontWeight: 300,
+              fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)",
+              lineHeight: 1.15,
+              letterSpacing: "-0.01em",
+              marginBottom: "1.5rem",
             }}
-            className="text-4xl md:text-6xl tracking-tight mb-4 leading-none"
           >
             Visual stories that
             <br />
             <em style={{ color: "var(--gold)" }}>fill tables.</em>
           </h2>
+
+          {/* Divider */}
+          <div
+            style={{
+              width: "2.5rem",
+              height: "1px",
+              background: "var(--gold-dim)",
+              marginBottom: "1.5rem",
+              opacity: 0.6,
+            }}
+          />
+
+          {/* Description */}
           <p
-            className="text-sm md:text-base max-w-md leading-relaxed mb-6"
-            style={{ color: "var(--white-dim)", fontWeight: 300 }}
+            style={{
+              color: "var(--white-dim)",
+              fontWeight: 300,
+              fontSize: "0.9375rem",
+              lineHeight: 1.85,
+              maxWidth: "38ch",
+              marginBottom: "2.25rem",
+              letterSpacing: "0.01em",
+            }}
           >
             Cinematic food photography &amp; strategic marketing
             <br className="hidden md:block" />
             for restaurants that deserve to be discovered.
           </p>
-          <div className="flex gap-4 pointer-events-auto">
-            <a
-              href="#work"
-              className="btn-primary"
-              style={{ opacity: 1 }}
-            >
-              View Our Work
-            </a>
-            <a
-              href="#contact"
-              className="btn-ghost"
-              style={{ opacity: 1 }}
-            >
-              Start a Project
-            </a>
+
+          {/* CTA buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pointer-events-auto w-full sm:w-auto">
+            <a href="#work"    className="btn-primary" style={{ opacity: 1, textAlign: "center" }}>View Our Work</a>
+            <a href="#contact" className="btn-ghost"   style={{ opacity: 1, textAlign: "center" }}>Start a Project</a>
           </div>
         </motion.div>
 

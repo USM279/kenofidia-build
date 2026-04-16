@@ -35,89 +35,21 @@
   transform: translateY(110%);
 }
 
-/* ── Grid ────────────────────────────────────────────────────── */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  border: 1px solid var(--border-dim);
-  background: var(--border-dim);
+/* ── Reveal list ─────────────────────────────────────────────── */
+.services-reveal-list {
+  border-top: 1px solid var(--border-dim);
 }
 
-/* ── Card ────────────────────────────────────────────────────── */
-.service-card {
-  position: relative;
-  background: var(--bg);
-  overflow: hidden;
+.services-reveal-item {
   opacity: 0;
 }
 
-.service-card-reveal {
-  position: absolute;
-  inset: 0;
-  background: var(--bg-card);
-  transform: translateY(100%);
-  transition: transform 0.55s var(--ease-out-expo);
-  z-index: 0;
-}
-
-.service-card:hover .service-card-reveal {
-  transform: translateY(0);
-}
-
-.service-card-body {
-  position: relative;
-  z-index: 1;
-  padding: 2.25rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  height: 100%;
-  min-height: 220px;
-}
-
-.service-num {
-  font-family: var(--font-sans);
-  font-size: 0.625rem;
-  letter-spacing: 0.15em;
-  color: var(--gold);
-  font-weight: 400;
-}
-
-.service-name {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: var(--white);
-  line-height: 1.2;
-  transition: color 0.3s;
-}
-.service-card:hover .service-name { color: var(--gold); }
-
-.service-desc {
-  font-size: 0.875rem;
-  color: var(--white-dim);
-  line-height: 1.65;
-  max-width: 30ch;
-  flex: 1;
-}
-
-.service-arrow {
-  display: inline-block;
-  font-size: 1.25rem;
-  color: var(--gold);
-  transform: rotate(0deg);
-  transition: transform 0.35s var(--ease-out-expo);
-  align-self: flex-end;
-}
-.service-card:hover .service-arrow { transform: rotate(45deg); }
-
 /* ── Responsive ──────────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .services-grid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 768px) {
+  .services       { padding: 5rem 0; }
+  .services-head  { margin-bottom: 2.5rem; }
 }
 @media (max-width: 600px) {
-  .services-inner { padding: 0 1.5rem; }
-  .services-grid { grid-template-columns: 1fr; }
-  .service-card-body { min-height: auto; padding: 1.75rem 1.5rem; }
+  .services-inner { padding: 0 1.25rem; }
+  .services-title { font-size: clamp(2rem, 9vw, 3rem); }
 }
