@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { supportingPhotos } from '../data/portfolio'
 import '../styles/Process.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -10,31 +11,31 @@ const steps = [
     num: '01',
     title: 'Discovery',
     desc: 'We immerse ourselves in your brand — your kitchen, your story, your ambitions. This session shapes everything that follows.',
-    img: 'https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=800&q=80',
+    img: supportingPhotos[8].src,
   },
   {
     num: '02',
     title: 'Creative Direction',
     desc: 'We develop a visual language: colour, mood, styling, locations, and art direction unique to your concept.',
-    img: 'https://images.unsplash.com/photo-1611095210561-67f37abd9dac?w=800&q=80',
+    img: supportingPhotos[9].src,
   },
   {
     num: '03',
     title: 'Production',
     desc: 'Shoot days, styling, and video production executed with editorial-grade precision on your premises or studio.',
-    img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+    img: supportingPhotos[1].src,
   },
   {
     num: '04',
     title: 'Post & Delivery',
     desc: 'Retouching, colour grading, and final delivery across all formats — web, print, social — organised and on time.',
-    img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+    img: supportingPhotos[0].src,
   },
   {
     num: '05',
     title: 'Growth & Iteration',
     desc: 'We track performance, refine content strategy, and evolve your visual identity as your restaurant grows.',
-    img: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&q=80',
+    img: supportingPhotos[7].src,
   },
 ]
 

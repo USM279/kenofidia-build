@@ -1,12 +1,7 @@
 import '../styles/Footer.css'
+import { portfolioNavigation } from '../data/portfolio'
 
-const nav = [
-  { label: 'Work',     href: '#work' },
-  { label: 'Services', href: '#services' },
-  { label: 'Process',  href: '#process' },
-  { label: 'Clients',  href: '#clients' },
-  { label: 'Contact',  href: '#contact' },
-]
+const nav = [...portfolioNavigation, { label: 'Contact', href: '#contact' }]
 
 const social = [
   { label: 'Instagram', href: '#' },

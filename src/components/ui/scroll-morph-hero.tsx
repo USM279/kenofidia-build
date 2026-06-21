@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { motion, useTransform, useSpring, useMotionValue } from "framer-motion";
+import { heroImages } from "../../data/portfolio";
 
 // --- Types ---
 export type AnimationPhase = "scatter" | "line" | "circle" | "bottom-strip";
@@ -21,28 +22,7 @@ const TOTAL_IMAGES = 20;
 const MAX_SCROLL   = 3000;
 
 // Food & restaurant photography for Kenofidia
-const IMAGES = [
-  "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=300&q=80",
-  "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&q=80",
-  "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=300&q=80",
-  "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=300&q=80",
-  "https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=300&q=80",
-  "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=300&q=80",
-  "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=300&q=80",
-  "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&q=80",
-  "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=300&q=80",
-  "https://images.unsplash.com/photo-1611095210561-67f37abd9dac?w=300&q=80",
-  "https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=300&q=80",
-  "https://images.unsplash.com/photo-1484980972926-edee96e0960d?w=300&q=80",
-  "https://images.unsplash.com/photo-1432139509613-5c4255815697?w=300&q=80",
-  "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=300&q=80",
-  "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&q=80",
-  "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=300&q=80",
-  "https://images.unsplash.com/photo-1547592180-85f173990554?w=300&q=80",
-  "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=300&q=80",
-  "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=300&q=80",
-  "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=300&q=80",
-];
+const IMAGES = heroImages;
 
 const lerp = (start: number, end: number, t: number) =>
   start * (1 - t) + end * t;

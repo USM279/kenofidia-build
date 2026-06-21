@@ -8,7 +8,7 @@
   margin: 0 auto;
   padding: 0 3rem;
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: 0.6fr 1.8fr auto;
   align-items: start;
   gap: 3rem;
   padding-bottom: 2.5rem;
@@ -27,7 +27,9 @@
 
 .footer-nav {
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1.35rem;
 }
 
 .footer-link {
@@ -75,12 +77,12 @@
   color: var(--gold-dim);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 960px) {
   .footer-top {
     grid-template-columns: 1fr;
     gap: 2rem;
     padding: 0 1.5rem 2rem;
   }
-  .footer-nav { flex-wrap: wrap; gap: 1rem 1.5rem; }
+  .footer-nav { justify-content: flex-start; gap: 1rem 1.5rem; }
   .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem 1.5rem 0; }
 }
