@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import '../styles/Nav.css'
-import logo from '../assets/logo.png'
+import logo from '../assets/logo-small.png'
 import { portfolioNavigation } from '../data/portfolio'
 
 export default function Nav() {

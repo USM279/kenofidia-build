@@ -140,7 +140,7 @@ export default function Process() {
                   className="process-img-frame"
                   style={{ opacity: i === 0 ? 1 : 0 }}
                 >
-                  <img src={s.img} alt={s.title} loading="lazy" />
+                  <img src={s.img} alt={s.title} loading="lazy" decoding="async" />
                 </div>
               ))}
               <div className="process-img-border" aria-hidden="true" />

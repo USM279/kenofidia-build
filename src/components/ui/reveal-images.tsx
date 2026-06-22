@@ -160,6 +160,8 @@ function RevealImageListItem({ num, text, desc, images }: RevealImageListItemPro
             src={images[1].src}
             alt=""
             aria-hidden="true"
+            loading="lazy"
+            decoding="async"
             className="h-full w-full object-cover pointer-events-none"
           />
         </div>
@@ -170,6 +172,8 @@ function RevealImageListItem({ num, text, desc, images }: RevealImageListItemPro
             src={images[0].src}
             alt=""
             aria-hidden="true"
+            loading="lazy"
+            decoding="async"
             className="h-full w-full object-cover pointer-events-none"
           />
         </div>

@@ -87,7 +87,7 @@ function VideoCard({ item, isAi }) {
   const content = (
     <>
       <div className="video-card-media" style={naturalAspect}>
-        <img src={item.poster} alt={item.posterAlt} loading="lazy" />
+        <img src={item.poster} alt={item.posterAlt} loading="lazy" decoding="async" />
         <div className="media-shade" />
         <PlayMark />
         {isAi && <span className="media-badge">AI generated</span>}
@@ -119,7 +119,7 @@ function GalleryCard({ item, isAi, index }) {
   return (
     <figure className={`gallery-card gallery-card--${(index % 5) + 1}${naturalAspect ? ' gallery-card--natural' : ''}`}>
       <div className="gallery-card-media" style={naturalAspect}>
-        <img src={item.src} alt={item.alt} loading="lazy" />
+        <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
         <div className="media-shade" />
         {isAi && <span className="media-badge">AI generated</span>}
       </div>
@@ -142,7 +142,7 @@ function FlyerCard({ item, index }) {
   return (
     <figure className={`flyer-card${naturalAspect ? ' flyer-card--natural' : ''}`}>
       <div className="flyer-card-frame">
-        <img src={item.src} alt={item.alt} loading="lazy" style={naturalAspect} />
+        <img src={item.src} alt={item.alt} loading="lazy" decoding="async" style={naturalAspect} />
       </div>
       <figcaption className="media-caption">
         <div>

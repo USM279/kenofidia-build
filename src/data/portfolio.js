@@ -92,7 +92,7 @@ export const portfolioMedia = {
       'Restaurant Reel',
       index,
       {
-        poster: `/media/portfolio/videos/posters/video-${String(index + 1).padStart(2, '0')}.png`,
+        poster: `/media/portfolio/videos/posters/video-${String(index + 1).padStart(2, '0')}.avif`,
         posterAlt: `Poster for restaurant film ${index + 1}`,
         format: 'portrait',
       },
@@ -100,26 +100,26 @@ export const portfolioMedia = {
   ],
   photos: portfolioPhotos,
   aiImages: [
-    { id: 'ai-image-01', title: 'AI Study 01', category: 'AI Generated', src: '/media/portfolio/ai-images/ai-image-01.png', alt: 'AI-generated mixed grill plate and cola on a rustic table', width: 970, height: 1288 },
-    { id: 'ai-image-02', title: 'AI Study 02', category: 'AI Generated', src: '/media/portfolio/ai-images/ai-image-02.png', alt: 'AI-generated grilled ribs and fries composition', width: 1934, height: 1278 },
-    { id: 'ai-image-03', title: 'AI Study 03', category: 'AI Generated', src: '/media/portfolio/ai-images/ai-image-03.png', alt: 'AI-generated sunlit restaurant interior during service', width: 2722, height: 1154 },
-    { id: 'ai-image-04', title: 'AI Study 04', category: 'AI Generated', src: '/media/portfolio/ai-images/ai-image-04.png', alt: 'AI-generated portrait of a chef preparing shawarma', width: 710, height: 1286 },
-    { id: 'ai-image-05', title: 'AI Study 05', category: 'AI Generated', src: '/media/portfolio/ai-images/ai-image-05.png', alt: 'AI-generated lamb and spiced rice dish', width: 1920, height: 1246 },
-    { id: 'ai-image-06', title: 'AI Study 06', category: 'AI Generated', src: '/media/portfolio/ai-images/ai-image-06.png', alt: 'AI-generated burger, fries, and cola composition', width: 2286, height: 1268 },
+    { id: 'ai-image-01', title: 'AI Study 01', category: 'AI Generated', src: '/media/portfolio/ai-images/ai-image-01.avif', alt: 'AI-generated mixed grill plate and cola on a rustic table', width: 970, height: 1288 },
+    { id: 'ai-image-02', title: 'AI Study 02', category: 'AI Generated', src: '/media/portfolio/ai-images/ai-image-02.avif', alt: 'AI-generated grilled ribs and fries composition', width: 1934, height: 1278 },
+    { id: 'ai-image-03', title: 'AI Study 03', category: 'AI Generated', src: '/media/portfolio/ai-images/ai-image-03.avif', alt: 'AI-generated sunlit restaurant interior during service', width: 2722, height: 1154 },
+    { id: 'ai-image-04', title: 'AI Study 04', category: 'AI Generated', src: '/media/portfolio/ai-images/ai-image-04.avif', alt: 'AI-generated portrait of a chef preparing shawarma', width: 710, height: 1286 },
+    { id: 'ai-image-05', title: 'AI Study 05', category: 'AI Generated', src: '/media/portfolio/ai-images/ai-image-05.avif', alt: 'AI-generated lamb and spiced rice dish', width: 1920, height: 1246 },
+    { id: 'ai-image-06', title: 'AI Study 06', category: 'AI Generated', src: '/media/portfolio/ai-images/ai-image-06.avif', alt: 'AI-generated burger, fries, and cola composition', width: 2286, height: 1268 },
   ],
   aiVideos: [
     video('ai-film-01', 'AI Film 01', 'AI Motion', 15, {
-      poster: '/media/portfolio/ai-videos/posters/ai-video-01.png',
+      poster: '/media/portfolio/ai-videos/posters/ai-video-01.avif',
       posterAlt: 'Poster for AI film 1',
       format: 'portrait',
     }),
     video('ai-film-02', 'AI Film 02', 'AI Motion', 16, {
-      poster: '/media/portfolio/ai-videos/posters/ai-video-02.png',
+      poster: '/media/portfolio/ai-videos/posters/ai-video-02.avif',
       posterAlt: 'Poster for AI film 2',
       format: 'portrait',
     }),
     video('ai-film-03', 'AI Film 03', 'AI Motion', 17, {
-      poster: '/media/portfolio/ai-videos/posters/ai-video-03.png',
+      poster: '/media/portfolio/ai-videos/posters/ai-video-03.avif',
       posterAlt: 'Poster for AI film 3',
       format: 'portrait',
     }),
@@ -132,7 +132,10 @@ export const portfolioMedia = {
   behindScenes: behindScenesVideos,
 }
 
-export const heroImages = portfolioPhotos.slice(0, 20).map((item) => item.src)
+export const heroImages = Array.from(
+  { length: 20 },
+  (_, index) => `/media/hero/hero-${String(index + 1).padStart(2, '0')}.avif`,
+)
 export const supportingPhotos = portfolioPhotos
 
 export const portfolioNavigation = [

@@ -62,6 +62,7 @@ function FlipCard({ src, index, target }: FlipCardProps) {
           <img
             src={src}
             alt={`dish-${index}`}
+            decoding="async"
             className="h-full w-full object-cover"
           />
           {/* Gold overlay on hover */}
