@@ -46,22 +46,24 @@ const video = (id, title, category, posterIndex, options = {}) => ({
 })
 
 const photoDimensions = [
-  [2400, 1347], [2400, 1596], [2400, 1600], [1602, 2400], [1644, 2400],
-  [1600, 2400], [2400, 1600], [2400, 1600], [1600, 2400], [2400, 1600],
-  [2400, 1185], [1713, 2400], [1600, 2400], [2400, 1215], [2400, 1600],
-  [2400, 1600], [2400, 1600], [2400, 1600], [2400, 1600], [2400, 1600],
-  [1600, 2400], [2400, 1600], [2400, 1600], [1648, 2400], [2400, 1650],
-  [2400, 2053],
+  [1, 2400, 1347], [4, 1602, 2400], [5, 1644, 2400],
+  [6, 1600, 2400], [7, 2400, 1600], [8, 2400, 1600], [9, 1600, 2400],
+  [10, 2400, 1600], [11, 2400, 1185], [12, 1713, 2400], [13, 1600, 2400],
+  [14, 2400, 1215], [15, 2400, 1600], [16, 2400, 1600], [17, 2400, 1600],
+  [18, 2400, 1600], [19, 2400, 1600], [20, 2400, 1600], [21, 1600, 2400],
+  [22, 2400, 1600], [23, 2400, 1600], [24, 1648, 2400], [25, 2400, 1650],
+  [26, 2400, 2053],
 ]
 
-const portfolioPhotos = photoDimensions.map(([width, height], index) => ({
-  id: `restaurant-photo-${String(index + 1).padStart(2, '0')}`,
-  title: `Restaurant Story ${String(index + 1).padStart(2, '0')}`,
+const portfolioPhotos = photoDimensions.map(([storyNumber, width, height]) => ({
+  id: `restaurant-photo-${String(storyNumber).padStart(2, '0')}`,
+  title: `Restaurant Story ${String(storyNumber).padStart(2, '0')}`,
   category: 'Food & Restaurant',
-  src: `/media/portfolio/photos/photo-${String(index + 1).padStart(2, '0')}.avif`,
-  alt: `Kenofidia food and restaurant photography ${index + 1}`,
+  src: `/media/portfolio/photos/photo-${String(storyNumber).padStart(2, '0')}.avif`,
+  alt: `Kenofidia food and restaurant photography ${storyNumber}`,
   width,
   height,
+  displayIndex: String(storyNumber).padStart(2, '0'),
   isPlaceholder: false,
 }))
 
