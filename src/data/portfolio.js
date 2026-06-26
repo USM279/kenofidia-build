@@ -41,7 +41,7 @@ const video = (id, title, category, posterIndex, options = {}) => ({
   format: options.format ?? 'landscape',
   width: options.width,
   height: options.height,
-  youtubeUrl: '', // TODO: Paste the final private/unlisted YouTube URL.
+  youtubeUrl: options.youtubeUrl ?? '', // TODO: Paste the final private/unlisted YouTube URL.
   isPlaceholder: !options.poster,
 })
 
@@ -70,6 +70,21 @@ const portfolioPhotos = photoDimensions.map(([storyNumber, width, height]) => ({
 const behindScenesDimensions = [
   [708, 1240], [2210, 1216], [698, 1242], [696, 1238], [700, 1232],
   [704, 1248], [710, 1246], [702, 1236], [704, 1250], [716, 1248],
+  [712, 1242],
+]
+
+const behindScenesLinks = [
+  'https://youtube.com/shorts/BzAHo7evik8?feature=share',
+  '',
+  'https://youtube.com/shorts/TSOR0fjLU88?feature=share',
+  'https://youtube.com/shorts/uOrgmNQsZhw?feature=share',
+  'https://www.youtube.com/shorts/Wv_9MnLt2kE?feature=share',
+  'https://www.youtube.com/shorts/bYp89Pld6nM?feature=share',
+  '',
+  'https://youtube.com/shorts/2adkjLePeWs?feature=share',
+  '',
+  'https://youtube.com/shorts/0UN2wHudshg?feature=share',
+  'https://youtube.com/shorts/LDdbSVSMky4?feature=share',
 ]
 
 const behindScenesVideos = behindScenesDimensions.map(([width, height], index) => video(
@@ -83,8 +98,20 @@ const behindScenesVideos = behindScenesDimensions.map(([width, height], index) =
     format: width > height ? 'landscape' : 'portrait',
     width,
     height,
+    youtubeUrl: behindScenesLinks[index] ?? '',
   },
 ))
+
+const restaurantVideoLinks = [
+  '',
+  'https://youtube.com/shorts/-Sg9VH-DcxY?feature=share',
+  'https://youtube.com/shorts/-Sg9VH-DcxY?feature=share',
+  'https://youtube.com/shorts/qCH9WRkZrIo?feature=share',
+  '',
+  'https://youtube.com/shorts/Ir_ZTGaOcig?feature=share',
+  'https://youtube.com/shorts/4itujlmoRBI?feature=share',
+  'https://youtube.com/shorts/Oh5Mb7b0yYk?feature=share',
+]
 
 export const portfolioMedia = {
   restaurantVideos: [
@@ -97,6 +124,7 @@ export const portfolioMedia = {
         poster: `/media/portfolio/videos/posters/video-${String(index + 1).padStart(2, '0')}.avif`,
         posterAlt: `Poster for restaurant film ${index + 1}`,
         format: 'portrait',
+        youtubeUrl: restaurantVideoLinks[index] ?? '',
       },
     )),
   ],

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { portfolioMedia } from '../data/portfolio'
@@ -79,7 +79,115 @@ function PlayMark() {
   )
 }
 
-function VideoCard({ item, isAi }) {
+function getYouTubeEmbedUrl(url) {
+  try {
+    const parsed = new URL(url)
+    const host = parsed.hostname.replace(/^www\./, '')
+    let videoId = ''
+
+    if (host === 'youtu.be') {
+      videoId = parsed.pathname.split('/').filter(Boolean)[0] ?? ''
+    } else if (parsed.pathname.startsWith('/shorts/')) {
+      videoId = parsed.pathname.split('/').filter(Boolean)[1] ?? ''
+    } else if (parsed.pathname.startsWith('/embed/')) {
+      videoId = parsed.pathname.split('/').filter(Boolean)[1] ?? ''
+    } else {
+      videoId = parsed.searchParams.get('v') ?? ''
+    }
+
+    return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1` : url
+  } catch {
+    return url
+  }
+}
+
+function VideoModal({ item, onClose }) {
+  useEffect(() => {
+    if (!item) return undefined
+
+    const previousOverflow = document.body.style.overflow
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onClose()
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [item, onClose])
+
+  if (!item) return null
+
+  const isPortrait = item.format === 'portrait' || (item.width && item.height && item.height > item.width)
+  const modalAspect = item.width && item.height
+    ? `${item.width} / ${item.height}`
+    : isPortrait
+      ? '9 / 16'
+      : '16 / 9'
+  const modalFrameStyle = {
+    '--modal-aspect': modalAspect,
+    '--modal-frame-width': isPortrait ? 'min(100%, calc((100dvh - 8rem) * 9 / 16))' : 'min(100%, 64rem)',
+  }
+
+  return (
+    <div className="video-modal" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
+      <div className="video-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="video-modal-title">
+        <button className="video-modal-close" type="button" aria-label="Close video" onClick={onClose}>×</button>
+        <div className="video-modal-frame" style={modalFrameStyle}>
+          <iframe
+            src={getYouTubeEmbedUrl(item.youtubeUrl)}
+            title={item.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
+        <div className="video-modal-caption">
+          <p>{item.category}</p>
+          <h3 id="video-modal-title">{item.title}</h3>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ImageModal({ item, onClose }) {
+  useEffect(() => {
+    if (!item) return undefined
+
+    const previousOverflow = document.body.style.overflow
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onClose()
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [item, onClose])
+
+  if (!item) return null
+
+  return (
+    <div className="image-modal" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
+      <div className="image-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="image-modal-title">
+        <button className="video-modal-close" type="button" aria-label="Close image" onClick={onClose}>×</button>
+        <img src={item.src} alt={item.alt} />
+        <div className="video-modal-caption">
+          <p>{item.category}</p>
+          <h3 id="image-modal-title">{item.title}</h3>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function VideoCard({ item, isAi, onOpen }) {
   const naturalAspect = item.width && item.height
     ? { '--media-aspect': `${item.width} / ${item.height}` }
     : undefined
@@ -97,15 +205,15 @@ function VideoCard({ item, isAi }) {
           <p>{item.category}</p>
           <h3>{item.title}</h3>
         </div>
-        <span className="media-action">{item.youtubeUrl ? 'Watch on YouTube ↗' : 'YouTube link pending'}</span>
+        <span className="media-action">{item.youtubeUrl ? 'Watch video' : 'YouTube link pending'}</span>
       </div>
     </>
   )
 
   return item.youtubeUrl ? (
-    <a className={cardClass} href={item.youtubeUrl} target="_blank" rel="noreferrer" data-cursor-hover>
+    <button className={cardClass} type="button" onClick={() => onOpen(item)} data-cursor-hover>
       {content}
-    </a>
+    </button>
   ) : (
     <article className={`${cardClass} video-card--pending`}>{content}</article>
   )
@@ -134,28 +242,34 @@ function GalleryCard({ item, isAi, index }) {
   )
 }
 
-function FlyerCard({ item, index }) {
+function FlyerCard({ item, index, onOpen }) {
   const naturalAspect = item.width && item.height
     ? { '--media-aspect': `${item.width} / ${item.height}` }
     : undefined
 
   return (
-    <figure className={`flyer-card${naturalAspect ? ' flyer-card--natural' : ''}`}>
+    <button
+      className={`flyer-card${naturalAspect ? ' flyer-card--natural' : ''}`}
+      type="button"
+      aria-label={`Open ${item.title}`}
+      onClick={() => onOpen(item)}
+      data-cursor-hover
+    >
       <div className="flyer-card-frame">
         <img src={item.src} alt={item.alt} loading="lazy" decoding="async" style={naturalAspect} />
       </div>
-      <figcaption className="media-caption">
+      <div className="media-caption">
         <div>
           <p>{item.category}</p>
           <h3>{item.title}</h3>
         </div>
         <span className="media-index">{String(index + 1).padStart(2, '0')}</span>
-      </figcaption>
-    </figure>
+      </div>
+    </button>
   )
 }
 
-function Collection({ collection }) {
+function Collection({ collection, onVideoOpen, onImageOpen }) {
   const isAi = collection.tone === 'ai'
 
   return (
@@ -172,8 +286,8 @@ function Collection({ collection }) {
 
         <div className={`collection-grid collection-grid--${collection.kind}${collection.format ? ` collection-grid--${collection.format}` : ''}`}>
           {collection.items.map((item, index) => {
-            if (collection.kind === 'video') return <VideoCard key={item.id} item={item} isAi={isAi} />
-            if (collection.kind === 'flyer') return <FlyerCard key={item.id} item={item} index={index} />
+            if (collection.kind === 'video') return <VideoCard key={item.id} item={item} isAi={isAi} onOpen={onVideoOpen} />
+            if (collection.kind === 'flyer') return <FlyerCard key={item.id} item={item} index={index} onOpen={onImageOpen} />
             return <GalleryCard key={item.id} item={item} index={index} isAi={isAi} />
           })}
         </div>
@@ -184,6 +298,8 @@ function Collection({ collection }) {
 
 export default function Portfolio() {
   const portfolioRef = useRef(null)
+  const [activeVideo, setActiveVideo] = useState(null)
+  const [activeImage, setActiveImage] = useState(null)
 
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -225,7 +341,16 @@ export default function Portfolio() {
           <p>Explore films, photography, AI experiments, campaign design, and the process behind it all.</p>
         </div>
       </div>
-      {collections.map((collection) => <Collection key={collection.id} collection={collection} />)}
+      {collections.map((collection) => (
+        <Collection
+          key={collection.id}
+          collection={collection}
+          onVideoOpen={setActiveVideo}
+          onImageOpen={setActiveImage}
+        />
+      ))}
+      <VideoModal item={activeVideo} onClose={() => setActiveVideo(null)} />
+      <ImageModal item={activeImage} onClose={() => setActiveImage(null)} />
     </div>
   )
 }
