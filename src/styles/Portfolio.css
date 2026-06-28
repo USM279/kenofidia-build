@@ -139,6 +139,7 @@ button.video-card {
   cursor: pointer;
 }
 
+button.gallery-card,
 button.flyer-card {
   padding: 0;
   border: 0;
@@ -150,6 +151,7 @@ button.flyer-card {
 }
 
 .video-card:focus-visible,
+.gallery-card:focus-visible,
 .flyer-card:focus-visible {
   outline: 1px solid var(--gold);
   outline-offset: 0.35rem;

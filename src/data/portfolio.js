@@ -142,16 +142,19 @@ export const portfolioMedia = {
       poster: '/media/portfolio/ai-videos/posters/ai-video-01.avif',
       posterAlt: 'Poster for AI film 1',
       format: 'portrait',
+      youtubeUrl: 'https://youtube.com/shorts/z3GrF8n99vM',
     }),
     video('ai-film-02', 'AI Film 02', 'AI Motion', 16, {
       poster: '/media/portfolio/ai-videos/posters/ai-video-02.avif',
       posterAlt: 'Poster for AI film 2',
       format: 'portrait',
+      youtubeUrl: 'https://youtube.com/shorts/hd4h4ncv_2I',
     }),
     video('ai-film-03', 'AI Film 03', 'AI Motion', 17, {
       poster: '/media/portfolio/ai-videos/posters/ai-video-03.avif',
       posterAlt: 'Poster for AI film 3',
       format: 'portrait',
+      youtubeUrl: 'https://youtube.com/shorts/00ACRzghVMk',
     }),
   ],
   flyers: [

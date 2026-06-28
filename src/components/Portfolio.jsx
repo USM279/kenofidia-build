@@ -219,26 +219,32 @@ function VideoCard({ item, isAi, onOpen }) {
   )
 }
 
-function GalleryCard({ item, isAi, index }) {
+function GalleryCard({ item, isAi, index, onOpen }) {
   const naturalAspect = item.width && item.height
     ? { '--media-aspect': `${item.width} / ${item.height}` }
     : undefined
 
   return (
-    <figure className={`gallery-card gallery-card--${(index % 5) + 1}${naturalAspect ? ' gallery-card--natural' : ''}`}>
+    <button
+      className={`gallery-card gallery-card--${(index % 5) + 1}${naturalAspect ? ' gallery-card--natural' : ''}`}
+      type="button"
+      aria-label={`Open ${item.title}`}
+      onClick={() => onOpen(item)}
+      data-cursor-hover
+    >
       <div className="gallery-card-media" style={naturalAspect}>
         <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
         <div className="media-shade" />
         {isAi && <span className="media-badge">AI generated</span>}
       </div>
-      <figcaption className="media-caption">
+      <div className="media-caption">
         <div>
           <p>{item.category}</p>
           <h3>{item.title}</h3>
         </div>
         <span className="media-index">{item.displayIndex ?? String(index + 1).padStart(2, '0')}</span>
-      </figcaption>
-    </figure>
+      </div>
+    </button>
   )
 }
 
@@ -288,7 +294,7 @@ function Collection({ collection, onVideoOpen, onImageOpen }) {
           {collection.items.map((item, index) => {
             if (collection.kind === 'video') return <VideoCard key={item.id} item={item} isAi={isAi} onOpen={onVideoOpen} />
             if (collection.kind === 'flyer') return <FlyerCard key={item.id} item={item} index={index} onOpen={onImageOpen} />
-            return <GalleryCard key={item.id} item={item} index={index} isAi={isAi} />
+            return <GalleryCard key={item.id} item={item} index={index} isAi={isAi} onOpen={onImageOpen} />
           })}
         </div>
       </div>
