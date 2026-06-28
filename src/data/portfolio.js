@@ -103,7 +103,7 @@ const behindScenesVideos = behindScenesDimensions.map(([width, height], index) =
 ))
 
 const restaurantVideoLinks = [
-  '',
+  'https://www.youtube.com/shorts/JGF5Xhx2_fk',
   'https://youtube.com/shorts/-Sg9VH-DcxY?feature=share',
   'https://youtube.com/shorts/-Sg9VH-DcxY?feature=share',
   'https://youtube.com/shorts/qCH9WRkZrIo?feature=share',
@@ -113,18 +113,20 @@ const restaurantVideoLinks = [
   'https://youtube.com/shorts/Oh5Mb7b0yYk?feature=share',
 ]
 
+const restaurantVideoNumbers = [1, 2, 3, 4, 6, 7, 8]
+
 export const portfolioMedia = {
   restaurantVideos: [
-    ...Array.from({ length: 8 }, (_, index) => video(
-      `restaurant-film-${String(index + 1).padStart(2, '0')}`,
-      `Restaurant Film ${String(index + 1).padStart(2, '0')}`,
+    ...restaurantVideoNumbers.map((filmNumber) => video(
+      `restaurant-film-${String(filmNumber).padStart(2, '0')}`,
+      `Restaurant Film ${String(filmNumber).padStart(2, '0')}`,
       'Restaurant Reel',
-      index,
+      filmNumber - 1,
       {
-        poster: `/media/portfolio/videos/posters/video-${String(index + 1).padStart(2, '0')}.avif`,
-        posterAlt: `Poster for restaurant film ${index + 1}`,
+        poster: `/media/portfolio/videos/posters/video-${String(filmNumber).padStart(2, '0')}.avif`,
+        posterAlt: `Poster for restaurant film ${filmNumber}`,
         format: 'portrait',
-        youtubeUrl: restaurantVideoLinks[index] ?? '',
+        youtubeUrl: restaurantVideoLinks[filmNumber - 1] ?? '',
       },
     )),
   ],
