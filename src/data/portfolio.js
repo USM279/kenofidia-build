@@ -56,7 +56,6 @@ const photoDimensions = [
 ]
 
 const photoOverrides = {
-  7: { src: '/media/hero/_1136825.jpeg', width: 4000, height: 6000 },
   15: { src: '/media/hero/_1136825.jpeg', width: 4000, height: 6000 },
 }
 
