@@ -46,7 +46,7 @@ const video = (id, title, category, posterIndex, options = {}) => ({
 })
 
 const photoDimensions = [
-  [1, 2400, 1347], [4, 1602, 2400], [5, 1644, 2400],
+  [1, 1644, 2400, 5], [4, 1602, 2400], [5, 2400, 1347, 1],
   [6, 1600, 2400], [7, 2400, 1600], [8, 2400, 1600], [9, 1600, 2400],
   [10, 2400, 1600], [11, 2400, 1185], [12, 1713, 2400], [13, 1600, 2400],
   [14, 2400, 1215], [15, 2400, 1600], [16, 2400, 1600], [17, 2400, 1600],
@@ -59,14 +59,14 @@ const photoOverrides = {
   15: { src: '/media/hero/_1136825.jpeg', width: 4000, height: 6000 },
 }
 
-const portfolioPhotos = photoDimensions.map(([storyNumber, width, height]) => {
+const portfolioPhotos = photoDimensions.map(([storyNumber, width, height, sourceNumber = storyNumber]) => {
   const override = photoOverrides[storyNumber] ?? {}
 
   return {
     id: `restaurant-photo-${String(storyNumber).padStart(2, '0')}`,
     title: `Restaurant Story ${String(storyNumber).padStart(2, '0')}`,
     category: 'Food & Restaurant',
-    src: override.src ?? `/media/portfolio/photos/photo-${String(storyNumber).padStart(2, '0')}.avif`,
+    src: override.src ?? `/media/portfolio/photos/photo-${String(sourceNumber).padStart(2, '0')}.avif`,
     alt: `Kenofidia food and restaurant photography ${storyNumber}`,
     width: override.width ?? width,
     height: override.height ?? height,
