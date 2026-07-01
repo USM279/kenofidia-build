@@ -365,7 +365,7 @@ export default function ScrollMorphHero() {
 
               // Circle
               const circleRadius = Math.min(minDimension * 0.35, 350);
-              const circleAngle  = (i / TOTAL_IMAGES) * 360;
+              const circleAngle  = ((i / TOTAL_IMAGES) * 360 + 144) % 360;
               const circleRad    = (circleAngle * Math.PI) / 180;
               const circlePos    = {
                 x: Math.cos(circleRad) * circleRadius,
