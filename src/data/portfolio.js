@@ -55,17 +55,25 @@ const photoDimensions = [
   [26, 2400, 2053],
 ]
 
-const portfolioPhotos = photoDimensions.map(([storyNumber, width, height]) => ({
-  id: `restaurant-photo-${String(storyNumber).padStart(2, '0')}`,
-  title: `Restaurant Story ${String(storyNumber).padStart(2, '0')}`,
-  category: 'Food & Restaurant',
-  src: `/media/portfolio/photos/photo-${String(storyNumber).padStart(2, '0')}.avif`,
-  alt: `Kenofidia food and restaurant photography ${storyNumber}`,
-  width,
-  height,
-  displayIndex: String(storyNumber).padStart(2, '0'),
-  isPlaceholder: false,
-}))
+const photoOverrides = {
+  15: { src: '/media/hero/_1136825.jpeg', width: 4000, height: 6000 },
+}
+
+const portfolioPhotos = photoDimensions.map(([storyNumber, width, height]) => {
+  const override = photoOverrides[storyNumber] ?? {}
+
+  return {
+    id: `restaurant-photo-${String(storyNumber).padStart(2, '0')}`,
+    title: `Restaurant Story ${String(storyNumber).padStart(2, '0')}`,
+    category: 'Food & Restaurant',
+    src: override.src ?? `/media/portfolio/photos/photo-${String(storyNumber).padStart(2, '0')}.avif`,
+    alt: `Kenofidia food and restaurant photography ${storyNumber}`,
+    width: override.width ?? width,
+    height: override.height ?? height,
+    displayIndex: String(storyNumber).padStart(2, '0'),
+    isPlaceholder: false,
+  }
+})
 
 const behindScenesItems = [
   { number: 1, width: 708, height: 1240, youtubeUrl: 'https://youtube.com/shorts/BzAHo7evik8?feature=share' },
