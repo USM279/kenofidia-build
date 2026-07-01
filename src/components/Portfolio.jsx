@@ -79,11 +79,21 @@ function PlayMark() {
   )
 }
 
-function getYouTubeEmbedUrl(url) {
+function getVideoEmbedUrl(url) {
   try {
     const parsed = new URL(url)
     const host = parsed.hostname.replace(/^www\./, '')
     let videoId = ''
+
+    if (host === 'vimeo.com') {
+      videoId = parsed.pathname.split('/').filter(Boolean)[0] ?? ''
+      return videoId ? `https://player.vimeo.com/video/${videoId}?autoplay=1` : url
+    }
+
+    if (host === 'player.vimeo.com' && parsed.pathname.startsWith('/video/')) {
+      videoId = parsed.pathname.split('/').filter(Boolean)[1] ?? ''
+      return videoId ? `https://player.vimeo.com/video/${videoId}?autoplay=1` : url
+    }
 
     if (host === 'youtu.be') {
       videoId = parsed.pathname.split('/').filter(Boolean)[0] ?? ''
@@ -138,7 +148,7 @@ function VideoModal({ item, onClose }) {
         <button className="video-modal-close" type="button" aria-label="Close video" onClick={onClose}>×</button>
         <div className="video-modal-frame" style={modalFrameStyle}>
           <iframe
-            src={getYouTubeEmbedUrl(item.youtubeUrl)}
+            src={getVideoEmbedUrl(item.youtubeUrl)}
             title={item.title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen

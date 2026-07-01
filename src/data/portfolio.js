@@ -1,5 +1,5 @@
 // Portfolio content manifest
-// Replace `src` values with files from /public/media and paste final YouTube
+// Replace `src` values with files from /public/media and paste final video
 // URLs into `youtubeUrl`. Keep IDs stable so layout and links remain intact.
 
 const placeholderPhotos = [
@@ -41,7 +41,7 @@ const video = (id, title, category, posterIndex, options = {}) => ({
   format: options.format ?? 'landscape',
   width: options.width,
   height: options.height,
-  youtubeUrl: options.youtubeUrl ?? '', // TODO: Paste the final private/unlisted YouTube URL.
+  youtubeUrl: options.youtubeUrl ?? '', // TODO: Paste the final private/unlisted video URL.
   isPlaceholder: !options.poster,
 })
 
@@ -112,9 +112,13 @@ const restaurantVideoLinks = [
   'https://youtube.com/shorts/Ir_ZTGaOcig?feature=share',
   'https://youtube.com/shorts/4itujlmoRBI?feature=share',
   'https://youtube.com/shorts/Oh5Mb7b0yYk?feature=share',
+  'https://vimeo.com/1206294063?share=copy&fl=sv&fe=ci',
 ]
 
-const restaurantVideoNumbers = [1, 2, 3, 4, 6, 7, 8]
+const restaurantVideoNumbers = [1, 2, 3, 4, 6, 7, 8, 9]
+const restaurantVideoOverrides = {
+  9: { poster: '/media/portfolio/videos/posters/video-09.png', width: 880, height: 1578 },
+}
 
 export const portfolioMedia = {
   restaurantVideos: [
@@ -124,9 +128,11 @@ export const portfolioMedia = {
       'Restaurant Reel',
       filmNumber - 1,
       {
-        poster: `/media/portfolio/videos/posters/video-${String(filmNumber).padStart(2, '0')}.avif`,
+        poster: restaurantVideoOverrides[filmNumber]?.poster ?? `/media/portfolio/videos/posters/video-${String(filmNumber).padStart(2, '0')}.avif`,
         posterAlt: `Poster for restaurant film ${filmNumber}`,
         format: 'portrait',
+        width: restaurantVideoOverrides[filmNumber]?.width,
+        height: restaurantVideoOverrides[filmNumber]?.height,
         youtubeUrl: restaurantVideoLinks[filmNumber - 1] ?? '',
       },
     )),
@@ -158,6 +164,14 @@ export const portfolioMedia = {
       posterAlt: 'Poster for AI film 3',
       format: 'portrait',
       youtubeUrl: 'https://youtube.com/shorts/00ACRzghVMk',
+    }),
+    video('ai-film-04', 'AI Film 04', 'AI Motion', 18, {
+      poster: '/media/portfolio/ai-videos/posters/ai-video-04.png',
+      posterAlt: 'Poster for AI film 4',
+      format: 'portrait',
+      width: 874,
+      height: 1540,
+      youtubeUrl: 'https://vimeo.com/1206294064?share=copy&fl=sv&fe=ci',
     }),
   ],
   flyers: [
