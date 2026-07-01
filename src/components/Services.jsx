@@ -1,53 +1,34 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { RevealImageList } from './ui/reveal-images'
-import { supportingPhotos } from '../data/portfolio'
 import '../styles/Services.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const imagePair = (first, second) => [
-  { src: supportingPhotos[first].src, alt: supportingPhotos[first].alt },
-  { src: supportingPhotos[second].src, alt: supportingPhotos[second].alt },
-]
-
 const services = [
   {
-    
     text: 'Food Photography',
     desc: 'Cinematic stills that translate flavour, texture, and atmosphere into images guests cannot ignore.',
-    images: imagePair(0, 1),
   },
   {
-    
     text: 'Menu Design',
     desc: 'Typographic menu systems that guide decisions, elevate perceived value, and reflect your identity.',
-    images: imagePair(5, 6),
   },
   {
-    
     text: 'Brand Identity',
     desc: 'Logo, colour, voice, and visual system built specifically for the hospitality world.',
-    images: imagePair(3, 4),
   },
   {
-    
     text: 'Social Strategy',
     desc: 'Content calendars, community management, and paid social designed to fill covers every service.',
-    images: imagePair(7, 17),
   },
   {
-    
     text: 'Video Production',
     desc: 'Short-form reels, brand films, and behind-the-scenes content crafted for modern platforms.',
-    images: imagePair(2, 13),
   },
   {
-      
     text: 'Website Design',
     desc: 'Reservation-optimised, mobile-first websites that convert browsers into booked guests.',
-    images: imagePair(14, 16),
   },
 ]
 
@@ -106,7 +87,10 @@ export default function Services() {
         <div ref={listRef} className="services-reveal-list">
           {services.map((s, i) => (
             <div key={i} className="services-reveal-item">
-              <RevealImageList items={[s]} />
+              <div className="service-text-item">
+                <h3>{s.text}</h3>
+                <p>{s.desc}</p>
+              </div>
             </div>
           ))}
         </div>

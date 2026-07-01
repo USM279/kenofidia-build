@@ -42,12 +42,42 @@
 
 .services-reveal-item {
   opacity: 0;
+  border-bottom: 1px solid var(--border-dim);
+}
+
+.service-text-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 28ch);
+  gap: 2rem;
+  align-items: baseline;
+  padding: 4.5rem 0;
+}
+
+.service-text-item h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.75rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--white);
+}
+
+.service-text-item p {
+  color: var(--white-dim);
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.75;
+  margin: 0;
 }
 
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .services       { padding: 5rem 0; }
   .services-head  { margin-bottom: 2.5rem; }
+  .service-text-item {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 3rem 0;
+  }
 }
 @media (max-width: 600px) {
   .services-inner { padding: 0 1.25rem; }
