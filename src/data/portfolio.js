@@ -67,38 +67,31 @@ const portfolioPhotos = photoDimensions.map(([storyNumber, width, height]) => ({
   isPlaceholder: false,
 }))
 
-const behindScenesDimensions = [
-  [708, 1240], [2210, 1216], [698, 1242], [696, 1238], [700, 1232],
-  [704, 1248], [710, 1246], [702, 1236], [704, 1250], [716, 1248],
-  [712, 1242],
+const behindScenesItems = [
+  { number: 1, width: 708, height: 1240, youtubeUrl: 'https://youtube.com/shorts/BzAHo7evik8?feature=share' },
+  { number: 2, width: 2210, height: 1216, youtubeUrl: 'https://www.youtube.com/watch?v=NZvSmgHaK3k&feature=youtu.be' },
+  { number: 3, width: 698, height: 1242, youtubeUrl: 'https://youtube.com/shorts/TSOR0fjLU88?feature=share' },
+  { number: 4, width: 696, height: 1238, youtubeUrl: 'https://youtube.com/shorts/uOrgmNQsZhw?feature=share' },
+  { number: 5, width: 700, height: 1232, youtubeUrl: 'https://www.youtube.com/shorts/Wv_9MnLt2kE?feature=share' },
+  { number: 6, width: 704, height: 1248, youtubeUrl: 'https://www.youtube.com/shorts/bYp89Pld6nM?feature=share' },
+  { number: 8, width: 702, height: 1236, youtubeUrl: 'https://youtube.com/shorts/2adkjLePeWs?feature=share' },
+  { number: 9, width: 704, height: 1250, youtubeUrl: 'https://youtube.com/shorts/r9BGbWGNz_w' },
+  { number: 10, width: 716, height: 1248, youtubeUrl: 'https://youtube.com/shorts/0UN2wHudshg?feature=share' },
+  { number: 11, width: 712, height: 1242, youtubeUrl: 'https://youtube.com/shorts/LDdbSVSMky4?feature=share' },
 ]
 
-const behindScenesLinks = [
-  'https://youtube.com/shorts/BzAHo7evik8?feature=share',
-  'https://www.youtube.com/watch?v=NZvSmgHaK3k&feature=youtu.be',
-  'https://youtube.com/shorts/TSOR0fjLU88?feature=share',
-  'https://youtube.com/shorts/uOrgmNQsZhw?feature=share',
-  'https://www.youtube.com/shorts/Wv_9MnLt2kE?feature=share',
-  'https://www.youtube.com/shorts/bYp89Pld6nM?feature=share',
-  '',
-  'https://youtube.com/shorts/2adkjLePeWs?feature=share',
-  'https://youtube.com/shorts/r9BGbWGNz_w',
-  'https://youtube.com/shorts/0UN2wHudshg?feature=share',
-  'https://youtube.com/shorts/LDdbSVSMky4?feature=share',
-]
-
-const behindScenesVideos = behindScenesDimensions.map(([width, height], index) => video(
-  `bts-${String(index + 1).padStart(2, '0')}`,
-  `Behind the Scenes ${String(index + 1).padStart(2, '0')}`,
+const behindScenesVideos = behindScenesItems.map(({ number, width, height, youtubeUrl }) => video(
+  `bts-${String(number).padStart(2, '0')}`,
+  `Behind the Scenes ${String(number).padStart(2, '0')}`,
   'Behind the Scenes',
-  index,
+  number - 1,
   {
-    poster: `/media/behind-the-scenes/posters/bts-${String(index + 1).padStart(2, '0')}.avif`,
-    posterAlt: `Behind-the-scenes video poster ${index + 1}`,
+    poster: `/media/behind-the-scenes/posters/bts-${String(number).padStart(2, '0')}.avif`,
+    posterAlt: `Behind-the-scenes video poster ${number}`,
     format: width > height ? 'landscape' : 'portrait',
     width,
     height,
-    youtubeUrl: behindScenesLinks[index] ?? '',
+    youtubeUrl,
   },
 ))
 
