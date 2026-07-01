@@ -167,10 +167,28 @@ export const portfolioMedia = {
   behindScenes: behindScenesVideos,
 }
 
-export const heroImages = Array.from(
-  { length: 20 },
-  (_, index) => `/media/hero/hero-${String(index + 1).padStart(2, '0')}.avif`,
-)
+export const heroImages = [
+  '/media/hero/hero-01.avif',
+  '/media/hero/hero-02.avif',
+  '/media/hero/_1136811.jpeg',
+  '/media/hero/hero-03.avif',
+  '/media/hero/hero-04.avif',
+  '/media/hero/hero-05.avif',
+  '/media/hero/hero-06.avif',
+  '/media/hero/hero-07.avif',
+  '/media/hero/hero-08.avif',
+  '/media/hero/_1136825.jpeg',
+  '/media/hero/hero-09.avif',
+  '/media/hero/hero-10.avif',
+  '/media/hero/hero-11.avif',
+  '/media/hero/hero-12.avif',
+  '/media/hero/hero-13.avif',
+  '/media/hero/hero-14.avif',
+  '/media/hero/hero-18.avif',
+  '/media/hero/hero-19.avif',
+  '/media/hero/_1136836.jpeg',
+  '/media/hero/hero-20.avif',
+]
 export const supportingPhotos = portfolioPhotos
 
 export const portfolioNavigation = [

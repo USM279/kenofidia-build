@@ -18,11 +18,11 @@ interface FlipCardProps {
 // --- Constants ---
 const IMG_WIDTH  = 90;
 const IMG_HEIGHT = 125;
-const TOTAL_IMAGES = 20;
 const MAX_SCROLL   = 3000;
 
 // Food & restaurant photography for Kenofidia
 const IMAGES = heroImages;
+const TOTAL_IMAGES = IMAGES.length;
 
 const lerp = (start: number, end: number, t: number) =>
   start * (1 - t) + end * t;
