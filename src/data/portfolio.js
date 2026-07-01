@@ -106,20 +106,19 @@ const behindScenesVideos = behindScenesItems.map(({ number, width, height, youtu
 const restaurantVideoLinks = [
   'https://www.youtube.com/shorts/JGF5Xhx2_fk',
   'https://youtube.com/shorts/tFA6rzY6tvE',
-  'https://youtube.com/shorts/-Sg9VH-DcxY?feature=share',
+  'https://vimeo.com/1206296761?share=copy&fl=sv&fe=ci',
   'https://youtube.com/shorts/qCH9WRkZrIo?feature=share',
   '',
   'https://youtube.com/shorts/Ir_ZTGaOcig?feature=share',
   'https://youtube.com/shorts/4itujlmoRBI?feature=share',
   'https://youtube.com/shorts/Oh5Mb7b0yYk?feature=share',
   'https://vimeo.com/1206294063?share=copy&fl=sv&fe=ci',
-  'https://vimeo.com/1206296761?share=copy&fl=sv&fe=ci',
 ]
 
-const restaurantVideoNumbers = [1, 2, 3, 4, 6, 7, 8, 9, 10]
+const restaurantVideoNumbers = [1, 2, 3, 4, 6, 7, 8, 9]
 const restaurantVideoOverrides = {
+  3: { poster: '/media/portfolio/videos/posters/video-10.png', width: 874, height: 1532 },
   9: { poster: '/media/portfolio/videos/posters/video-09.png', width: 880, height: 1578 },
-  10: { poster: '/media/portfolio/videos/posters/video-10.png', width: 874, height: 1532 },
 }
 
 export const portfolioMedia = {
