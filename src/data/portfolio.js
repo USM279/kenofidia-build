@@ -113,11 +113,13 @@ const restaurantVideoLinks = [
   'https://youtube.com/shorts/4itujlmoRBI?feature=share',
   'https://youtube.com/shorts/Oh5Mb7b0yYk?feature=share',
   'https://vimeo.com/1206294063?share=copy&fl=sv&fe=ci',
+  'https://vimeo.com/1206296761?share=copy&fl=sv&fe=ci',
 ]
 
-const restaurantVideoNumbers = [1, 2, 3, 4, 6, 7, 8, 9]
+const restaurantVideoNumbers = [1, 2, 3, 4, 6, 7, 8, 9, 10]
 const restaurantVideoOverrides = {
   9: { poster: '/media/portfolio/videos/posters/video-09.png', width: 880, height: 1578 },
+  10: { poster: '/media/portfolio/videos/posters/video-10.png', width: 874, height: 1532 },
 }
 
 export const portfolioMedia = {
