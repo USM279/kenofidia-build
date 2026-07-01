@@ -104,7 +104,7 @@ const behindScenesVideos = behindScenesDimensions.map(([width, height], index) =
 
 const restaurantVideoLinks = [
   'https://www.youtube.com/shorts/JGF5Xhx2_fk',
-  'https://youtube.com/shorts/-Sg9VH-DcxY?feature=share',
+  'https://youtube.com/shorts/tFA6rzY6tvE',
   'https://youtube.com/shorts/-Sg9VH-DcxY?feature=share',
   'https://youtube.com/shorts/qCH9WRkZrIo?feature=share',
   '',
