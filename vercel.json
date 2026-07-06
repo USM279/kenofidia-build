@@ -1,0 +1,16 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "kenofidia-build.vercel.app"
+        }
+      ],
+      "destination": "https://kenofidia.nl/:path*",
+      "permanent": true
+    }
+  ]
+}
