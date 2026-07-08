@@ -1,42 +1,18 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { supportingPhotos } from '../data/portfolio'
 import '../styles/Process.css'
+import { useLanguage } from '../i18n/useLanguage'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const steps = [
-  {
-    num: '01',
-    title: 'Discovery',
-    desc: 'We immerse ourselves in your brand — your kitchen, your story, your ambitions. This session shapes everything that follows.',
-    img: supportingPhotos[8].src,
-  },
-  {
-    num: '02',
-    title: 'Creative Direction',
-    desc: 'We develop a visual language: colour, mood, styling, locations, and art direction unique to your concept.',
-    img: supportingPhotos[9].src,
-  },
-  {
-    num: '03',
-    title: 'Production',
-    desc: 'Shoot days, styling, and video production executed with editorial-grade precision on your premises or studio.',
-    img: supportingPhotos[1].src,
-  },
-  {
-    num: '04',
-    title: 'Post & Delivery',
-    desc: 'Retouching, colour grading, and final delivery across all formats — web, print, social — organised and on time.',
-    img: supportingPhotos[0].src,
-  },
-  {
-    num: '05',
-    title: 'Growth & Iteration',
-    desc: 'We track performance, refine content strategy, and evolve your visual identity as your restaurant grows.',
-    img: supportingPhotos[7].src,
-  },
+const stepImages = [
+  supportingPhotos[8].src,
+  supportingPhotos[9].src,
+  supportingPhotos[1].src,
+  supportingPhotos[0].src,
+  supportingPhotos[7].src,
 ]
 
 export default function Process() {
@@ -45,6 +21,11 @@ export default function Process() {
   const stepRefs    = useRef([])
   const imgRefs     = useRef([])
   const stickyRef   = useRef(null)
+  const { t } = useLanguage()
+  const steps = useMemo(
+    () => t.process.steps.map((step, index) => ({ ...step, img: stepImages[index] })),
+    [t.process.steps],
+  )
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -96,16 +77,16 @@ export default function Process() {
     }, sectionRef)
 
     return () => ctx.revert()
-  }, [])
+  }, [steps])
 
   return (
     <section id="process" ref={sectionRef} className="process">
       <div className="process-inner">
         <div className="process-left">
           <div className="process-head">
-            <p className="section-label">How We Work</p>
+            <p className="section-label">{t.process.label}</p>
             <h2 ref={headRef} className="process-title">
-              {['A process', 'built for', 'precision.'].map((w, i) => (
+              {t.process.title.map((w, i) => (
                 <span key={i} className="sw process-title-line">
                   <span className="sw-inner">{w}</span>
                 </span>

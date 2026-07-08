@@ -1,18 +1,17 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { portfolioMedia } from '../data/portfolio'
 import '../styles/Portfolio.css'
+import { useLanguage } from '../i18n/useLanguage'
+import { getMediaAlt, getMediaCategory, getMediaTitle } from '../i18n/translations'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const collections = [
+const collectionBlueprints = [
   {
     id: 'restaurant-videos',
     index: '01',
-    eyebrow: 'Restaurant Films',
-    title: 'Stories in motion.',
-    intro: 'Short-form films, service stories, and campaign pieces made inside real restaurants.',
     kind: 'video',
     format: 'portrait-video',
     items: portfolioMedia.restaurantVideos,
@@ -20,9 +19,6 @@ const collections = [
   {
     id: 'restaurant-photos',
     index: '02',
-    eyebrow: 'Food & Restaurant Photography',
-    title: 'Made to be tasted with the eyes.',
-    intro: 'Food, people, and atmosphere photographed with an editorial eye and a sense of place.',
     kind: 'gallery',
     format: 'photo-masonry',
     items: portfolioMedia.photos,
@@ -30,9 +26,6 @@ const collections = [
   {
     id: 'ai-images',
     index: '03',
-    eyebrow: 'AI Images',
-    title: 'The imagined table.',
-    intro: 'Conceptual image-making where art direction, food culture, and generative craft meet.',
     kind: 'gallery',
     format: 'mixed-gallery',
     tone: 'ai',
@@ -41,9 +34,6 @@ const collections = [
   {
     id: 'ai-videos',
     index: '04',
-    eyebrow: 'AI Films',
-    title: 'Impossible scenes, set in motion.',
-    intro: 'Experimental motion work created with AI and finished through the same cinematic lens.',
     kind: 'video',
     format: 'portrait-video-three',
     tone: 'ai',
@@ -52,9 +42,6 @@ const collections = [
   {
     id: 'flyers',
     index: '05',
-    eyebrow: 'Flyer Design',
-    title: 'Campaigns you can hold.',
-    intro: 'Graphic pieces for openings, events, offers, and moments that deserve a visual identity.',
     kind: 'flyer',
     format: 'flyer-three',
     items: portfolioMedia.flyers,
@@ -62,9 +49,6 @@ const collections = [
   {
     id: 'behind-the-scenes',
     index: '06',
-    eyebrow: 'Behind the Scenes',
-    title: 'The work behind the work.',
-    intro: 'A closer look at the sets, hands, decisions, and happy accidents behind every finished frame.',
     kind: 'video',
     format: 'mixed-video',
     items: portfolioMedia.behindScenes,
@@ -111,7 +95,7 @@ function getVideoEmbedUrl(url) {
   }
 }
 
-function VideoModal({ item, onClose }) {
+function VideoModal({ item, onClose, language, copy }) {
   useEffect(() => {
     if (!item) return undefined
 
@@ -141,29 +125,31 @@ function VideoModal({ item, onClose }) {
     '--modal-aspect': modalAspect,
     '--modal-frame-width': isPortrait ? 'min(100%, calc((100dvh - 8rem) * 9 / 16))' : 'min(100%, 64rem)',
   }
+  const title = getMediaTitle(item.title, language)
+  const category = getMediaCategory(item.category, language)
 
   return (
     <div className="video-modal" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
       <div className="video-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="video-modal-title">
-        <button className="video-modal-close" type="button" aria-label="Close video" onClick={onClose}>×</button>
+        <button className="video-modal-close" type="button" aria-label={copy.closeVideo} onClick={onClose}>×</button>
         <div className="video-modal-frame" style={modalFrameStyle}>
           <iframe
             src={getVideoEmbedUrl(item.youtubeUrl)}
-            title={item.title}
+            title={title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           />
         </div>
         <div className="video-modal-caption">
-          <p>{item.category}</p>
-          <h3 id="video-modal-title">{item.title}</h3>
+          <p>{category}</p>
+          <h3 id="video-modal-title">{title}</h3>
         </div>
       </div>
     </div>
   )
 }
 
-function ImageModal({ item, onClose }) {
+function ImageModal({ item, onClose, language, copy }) {
   useEffect(() => {
     if (!item) return undefined
 
@@ -182,40 +168,44 @@ function ImageModal({ item, onClose }) {
   }, [item, onClose])
 
   if (!item) return null
+  const title = getMediaTitle(item.title, language)
+  const category = getMediaCategory(item.category, language)
 
   return (
     <div className="image-modal" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
       <div className="image-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="image-modal-title">
-        <button className="video-modal-close" type="button" aria-label="Close image" onClick={onClose}>×</button>
-        <img src={item.src} alt={item.alt} />
+        <button className="video-modal-close" type="button" aria-label={copy.closeImage} onClick={onClose}>×</button>
+        <img src={item.src} alt={getMediaAlt(item, language)} />
         <div className="video-modal-caption">
-          <p>{item.category}</p>
-          <h3 id="image-modal-title">{item.title}</h3>
+          <p>{category}</p>
+          <h3 id="image-modal-title">{title}</h3>
         </div>
       </div>
     </div>
   )
 }
 
-function VideoCard({ item, isAi, onOpen }) {
+function VideoCard({ item, isAi, onOpen, language, copy }) {
   const naturalAspect = item.width && item.height
     ? { '--media-aspect': `${item.width} / ${item.height}` }
     : undefined
   const cardClass = `video-card video-card--${item.format}${naturalAspect ? ' video-card--natural' : ''}`
+  const title = getMediaTitle(item.title, language)
+  const category = getMediaCategory(item.category, language)
   const content = (
     <>
       <div className="video-card-media" style={naturalAspect}>
-        <img src={item.poster} alt={item.posterAlt} loading="lazy" decoding="async" />
+        <img src={item.poster} alt={getMediaAlt(item, language, 'poster')} loading="lazy" decoding="async" />
         <div className="media-shade" />
         <PlayMark />
-        {isAi && <span className="media-badge">AI generated</span>}
+        {isAi && <span className="media-badge">{copy.aiGenerated}</span>}
       </div>
       <div className="media-caption">
         <div>
-          <p>{item.category}</p>
-          <h3>{item.title}</h3>
+          <p>{category}</p>
+          <h3>{title}</h3>
         </div>
-        <span className="media-action">{item.youtubeUrl ? 'Watch video' : 'YouTube link pending'}</span>
+        <span className="media-action">{item.youtubeUrl ? copy.watchVideo : copy.videoPending}</span>
       </div>
     </>
   )
@@ -229,28 +219,30 @@ function VideoCard({ item, isAi, onOpen }) {
   )
 }
 
-function GalleryCard({ item, isAi, index, onOpen }) {
+function GalleryCard({ item, isAi, index, onOpen, language, copy }) {
   const naturalAspect = item.width && item.height
     ? { '--media-aspect': `${item.width} / ${item.height}` }
     : undefined
+  const title = getMediaTitle(item.title, language)
+  const category = getMediaCategory(item.category, language)
 
   return (
     <button
       className={`gallery-card gallery-card--${(index % 5) + 1}${naturalAspect ? ' gallery-card--natural' : ''}`}
       type="button"
-      aria-label={`Open ${item.title}`}
+      aria-label={`${copy.open} ${title}`}
       onClick={() => onOpen(item)}
       data-cursor-hover
     >
       <div className="gallery-card-media" style={naturalAspect}>
-        <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
+        <img src={item.src} alt={getMediaAlt(item, language)} loading="lazy" decoding="async" />
         <div className="media-shade" />
-        {isAi && <span className="media-badge">AI generated</span>}
+        {isAi && <span className="media-badge">{copy.aiGenerated}</span>}
       </div>
       <div className="media-caption">
         <div>
-          <p>{item.category}</p>
-          <h3>{item.title}</h3>
+          <p>{category}</p>
+          <h3>{title}</h3>
         </div>
         <span className="media-index">{item.displayIndex ?? String(index + 1).padStart(2, '0')}</span>
       </div>
@@ -258,26 +250,28 @@ function GalleryCard({ item, isAi, index, onOpen }) {
   )
 }
 
-function FlyerCard({ item, index, onOpen }) {
+function FlyerCard({ item, index, onOpen, language, copy }) {
   const naturalAspect = item.width && item.height
     ? { '--media-aspect': `${item.width} / ${item.height}` }
     : undefined
+  const title = getMediaTitle(item.title, language)
+  const category = getMediaCategory(item.category, language)
 
   return (
     <button
       className={`flyer-card${naturalAspect ? ' flyer-card--natural' : ''}`}
       type="button"
-      aria-label={`Open ${item.title}`}
+      aria-label={`${copy.open} ${title}`}
       onClick={() => onOpen(item)}
       data-cursor-hover
     >
       <div className="flyer-card-frame">
-        <img src={item.src} alt={item.alt} loading="lazy" decoding="async" style={naturalAspect} />
+        <img src={item.src} alt={getMediaAlt(item, language)} loading="lazy" decoding="async" style={naturalAspect} />
       </div>
       <div className="media-caption">
         <div>
-          <p>{item.category}</p>
-          <h3>{item.title}</h3>
+          <p>{category}</p>
+          <h3>{title}</h3>
         </div>
         <span className="media-index">{String(index + 1).padStart(2, '0')}</span>
       </div>
@@ -285,7 +279,7 @@ function FlyerCard({ item, index, onOpen }) {
   )
 }
 
-function Collection({ collection, onVideoOpen, onImageOpen }) {
+function Collection({ collection, onVideoOpen, onImageOpen, language, copy }) {
   const isAi = collection.tone === 'ai'
 
   return (
@@ -302,9 +296,9 @@ function Collection({ collection, onVideoOpen, onImageOpen }) {
 
         <div className={`collection-grid collection-grid--${collection.kind}${collection.format ? ` collection-grid--${collection.format}` : ''}`}>
           {collection.items.map((item, index) => {
-            if (collection.kind === 'video') return <VideoCard key={item.id} item={item} isAi={isAi} onOpen={onVideoOpen} />
-            if (collection.kind === 'flyer') return <FlyerCard key={item.id} item={item} index={index} onOpen={onImageOpen} />
-            return <GalleryCard key={item.id} item={item} index={index} isAi={isAi} onOpen={onImageOpen} />
+            if (collection.kind === 'video') return <VideoCard key={item.id} item={item} isAi={isAi} onOpen={onVideoOpen} language={language} copy={copy} />
+            if (collection.kind === 'flyer') return <FlyerCard key={item.id} item={item} index={index} onOpen={onImageOpen} language={language} copy={copy} />
+            return <GalleryCard key={item.id} item={item} index={index} isAi={isAi} onOpen={onImageOpen} language={language} copy={copy} />
           })}
         </div>
       </div>
@@ -316,6 +310,14 @@ export default function Portfolio() {
   const portfolioRef = useRef(null)
   const [activeVideo, setActiveVideo] = useState(null)
   const [activeImage, setActiveImage] = useState(null)
+  const { language, t } = useLanguage()
+  const collections = useMemo(
+    () => collectionBlueprints.map((collection, index) => ({
+      ...collection,
+      ...t.portfolio.collections[index],
+    })),
+    [t.portfolio.collections],
+  )
 
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -351,10 +353,10 @@ export default function Portfolio() {
   return (
     <div id="work" ref={portfolioRef} className="portfolio">
       <div className="portfolio-intro">
-        <p className="section-label">Selected Work</p>
+        <p className="section-label">{t.portfolio.selectedLabel}</p>
         <div className="portfolio-intro-grid">
-          <h2>One appetite.<br /><em>Many forms.</em></h2>
-          <p>Explore films, photography, AI experiments, campaign design, and the process behind it all.</p>
+          <h2>{t.portfolio.introTitleLead}<br /><em>{t.portfolio.introTitleEmphasis}</em></h2>
+          <p>{t.portfolio.introBody}</p>
         </div>
       </div>
       {collections.map((collection) => (
@@ -363,10 +365,12 @@ export default function Portfolio() {
           collection={collection}
           onVideoOpen={setActiveVideo}
           onImageOpen={setActiveImage}
+          language={language}
+          copy={t.portfolio}
         />
       ))}
-      <VideoModal item={activeVideo} onClose={() => setActiveVideo(null)} />
-      <ImageModal item={activeImage} onClose={() => setActiveImage(null)} />
+      <VideoModal item={activeVideo} onClose={() => setActiveVideo(null)} language={language} copy={t.portfolio} />
+      <ImageModal item={activeImage} onClose={() => setActiveImage(null)} language={language} copy={t.portfolio} />
     </div>
   )
 }

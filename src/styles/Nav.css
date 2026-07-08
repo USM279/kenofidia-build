@@ -67,6 +67,12 @@
 .nav-link:hover { color: var(--white); }
 .nav-link:hover::after { width: 100%; }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .nav-cta {
   font-size: 0.75rem;
   font-weight: 400;
@@ -81,6 +87,31 @@
   background: var(--gold);
   color: var(--bg);
   border-color: var(--gold);
+}
+
+.language-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+  padding: 0.1875rem;
+  border: 1px solid var(--border-dim);
+  background: rgba(245, 240, 232, 0.04);
+}
+
+.language-toggle-option {
+  width: 2rem;
+  height: 1.75rem;
+  color: var(--white-dim);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  transition: background 0.25s, color 0.25s;
+}
+
+.language-toggle-option:hover,
+.language-toggle-option--active {
+  background: var(--gold);
+  color: var(--bg);
 }
 
 /* ── Hamburger button ────────────────────────────────────────── */
@@ -180,6 +211,22 @@
   color: var(--bg);
 }
 
+.nav-drawer-language {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--white-dim);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.language-toggle--drawer {
+  flex-shrink: 0;
+}
+
 /* ── Backdrop ────────────────────────────────────────────────── */
 .nav-backdrop {
   position: fixed;
@@ -193,7 +240,7 @@
   .nav         { padding: 1.25rem 1.5rem; }
   .nav--scrolled { padding: 1rem 1.5rem; }
   .nav-links   { display: none; }
-  .nav-cta     { display: none; }
+  .nav-actions { display: none; }
   .nav-burger  { display: flex; }
   .nav-logo-img { height: 38px; }
   .nav--scrolled .nav-logo-img { height: 32px; }

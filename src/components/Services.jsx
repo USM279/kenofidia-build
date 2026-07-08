@@ -2,40 +2,15 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import '../styles/Services.css'
+import { useLanguage } from '../i18n/useLanguage'
 
 gsap.registerPlugin(ScrollTrigger)
-
-const services = [
-  {
-    text: 'Food Photography',
-    desc: 'Cinematic stills that translate flavour, texture, and atmosphere into images guests cannot ignore.',
-  },
-  {
-    text: 'Menu Design',
-    desc: 'Typographic menu systems that guide decisions, elevate perceived value, and reflect your identity.',
-  },
-  {
-    text: 'Brand Identity',
-    desc: 'Logo, colour, voice, and visual system built specifically for the hospitality world.',
-  },
-  {
-    text: 'Social Strategy',
-    desc: 'Content calendars, community management, and paid social designed to fill covers every service.',
-  },
-  {
-    text: 'Video Production',
-    desc: 'Short-form reels, brand films, and behind-the-scenes content crafted for modern platforms.',
-  },
-  {
-    text: 'Website Design',
-    desc: 'Reservation-optimised, mobile-first websites that convert browsers into booked guests.',
-  },
-]
 
 export default function Services() {
   const sectionRef = useRef(null)
   const headRef    = useRef(null)
   const listRef    = useRef(null)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -74,9 +49,9 @@ export default function Services() {
     <section id="services" ref={sectionRef} className="services">
       <div className="services-inner">
         <div className="services-head">
-          <p className="section-label">What we do</p>
+          <p className="section-label">{t.services.label}</p>
           <h2 ref={headRef} className="services-title">
-            {['Every', 'service,', 'one', 'vision.'].map((w, i) => (
+            {t.services.title.map((w, i) => (
               <span key={i} className="sw">
                 <span className="sw-inner">{w}</span>
               </span>
@@ -85,7 +60,7 @@ export default function Services() {
         </div>
 
         <div ref={listRef} className="services-reveal-list">
-          {services.map((s, i) => (
+          {t.services.items.map((s, i) => (
             <div key={i} className="services-reveal-item">
               <div className="service-text-item">
                 <h3>{s.text}</h3>

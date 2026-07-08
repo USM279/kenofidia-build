@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import '../styles/Testimonial.css'
+import { useLanguage } from '../i18n/useLanguage'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -10,6 +11,8 @@ export default function Testimonial() {
   const quoteMarkRef = useRef(null)
   const quoteRef   = useRef(null)
   const authorRef  = useRef(null)
+  const { t } = useLanguage()
+  const quoteWords = t.testimonial.quote.split(' ')
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -39,8 +42,6 @@ export default function Testimonial() {
     return () => ctx.revert()
   }, [])
 
-  const quoteWords = '"Working with Kenofidia transformed how guests perceive us before they even walk through the door."'.split(' ')
-
   return (
     <section ref={sectionRef} className="testimonial">
       <div className="testimonial-inner">
@@ -58,8 +59,8 @@ export default function Testimonial() {
           </p>
 
           <footer ref={authorRef} className="testimonial-author">
-            <span className="testimonial-author-name">Marco de Luca</span>
-            <span className="testimonial-author-role">Owner, Maison Dorée London</span>
+            <span className="testimonial-author-name">{t.testimonial.authorName}</span>
+            <span className="testimonial-author-role">{t.testimonial.authorRole}</span>
           </footer>
         </blockquote>
       </div>

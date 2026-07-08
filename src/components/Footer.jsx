@@ -1,41 +1,35 @@
 import '../styles/Footer.css'
 import { portfolioNavigation } from '../data/portfolio'
+import { useLanguage } from '../i18n/useLanguage'
 
 const nav = [...portfolioNavigation, { label: 'Contact', href: '#contact' }]
 
-const social = [
-  { label: 'Instagram', href: '#' },
-  { label: 'LinkedIn',  href: '#' },
-  { label: 'Behance',   href: '#' },
-]
+function getLinkId(href) {
+  return href.replace('#', '')
+}
 
 export default function Footer() {
+  const { t } = useLanguage()
+
   return (
     <footer className="footer">
       <div className="footer-top">
         <a href="#hero" className="footer-logo">Kenofidia</a>
 
-        <nav className="footer-nav" aria-label="Footer navigation">
+        <nav className="footer-nav" aria-label={t.footer.navAria}>
           {nav.map(l => (
-            <a key={l.label} href={l.href} className="footer-link">{l.label}</a>
+            <a key={l.label} href={l.href} className="footer-link">{t.nav.links[getLinkId(l.href)] ?? l.label}</a>
           ))}
         </nav>
 
-        <div className="footer-social">
-          {social.map(s => (
-            <a key={s.label} href={s.href} className="footer-social-link" aria-label={s.label}>
-              {s.label}
-            </a>
-          ))}
-        </div>
       </div>
 
       <div className="footer-bottom">
         <p className="footer-copy">
-          &copy; {new Date().getFullYear()} Kenofidia Studio. All rights reserved.
+          &copy; {new Date().getFullYear()} Kenofidia Studio. {t.footer.copy}
         </p>
         <p className="footer-tagline">
-          Crafting visual stories that fill tables.
+          {t.footer.tagline}
         </p>
       </div>
     </footer>

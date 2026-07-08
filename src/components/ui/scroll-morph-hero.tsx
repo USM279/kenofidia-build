@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { motion, useTransform, useSpring, useMotionValue } from "framer-motion";
 import { heroImages } from "../../data/portfolio";
+import { useLanguage } from "../../i18n/useLanguage";
 
 // --- Types ---
 export type AnimationPhase = "scatter" | "line" | "circle" | "bottom-strip";
@@ -13,6 +14,9 @@ interface FlipCardProps {
   total: number;
   phase: AnimationPhase;
   target: { x: number; y: number; rotation: number; scale: number; opacity: number };
+  label: string;
+  detail: string;
+  imageAlt: string;
 }
 
 // --- Constants ---
@@ -28,7 +32,7 @@ const lerp = (start: number, end: number, t: number) =>
   start * (1 - t) + end * t;
 
 // --- FlipCard ---
-function FlipCard({ src, index, target }: FlipCardProps) {
+function FlipCard({ src, index, target, label, detail, imageAlt }: FlipCardProps) {
   return (
     <motion.div
       animate={{
@@ -61,7 +65,7 @@ function FlipCard({ src, index, target }: FlipCardProps) {
         >
           <img
             src={src}
-            alt={`dish-${index}`}
+            alt={`${imageAlt} ${index + 1}`}
             decoding="async"
             className="h-full w-full object-cover"
           />
@@ -88,10 +92,10 @@ function FlipCard({ src, index, target }: FlipCardProps) {
             className="text-[7px] font-bold uppercase tracking-widest mb-1"
             style={{ color: "#C9A96E" }}
           >
-            View
+            {label}
           </p>
           <p className="text-xs font-medium" style={{ color: "#F5F0E8" }}>
-            Details
+            {detail}
           </p>
         </div>
       </motion.div>
@@ -101,6 +105,7 @@ function FlipCard({ src, index, target }: FlipCardProps) {
 
 // --- Main Component ---
 export default function ScrollMorphHero() {
+  const { t } = useLanguage();
   const [introPhase, setIntroPhase] = useState<AnimationPhase>("scatter");
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
@@ -262,8 +267,8 @@ export default function ScrollMorphHero() {
             }}
             className="text-3xl md:text-5xl font-light tracking-tight"
           >
-            We make restaurants{" "}
-            <em style={{ color: "var(--gold)" }}>unforgettable.</em>
+            {t.hero.intro.lead}{" "}
+            <em style={{ color: "var(--gold)" }}>{t.hero.intro.emphasis}</em>
           </motion.h1>
         </div>
 
@@ -276,7 +281,7 @@ export default function ScrollMorphHero() {
               : 0,
           }}
         >
-          <span className="hero-scroll-label">Scroll to explore</span>
+          <span className="hero-scroll-label">{t.hero.scrollHint}</span>
           <span className="hero-scroll-line" />
         </motion.div>
 
@@ -287,7 +292,7 @@ export default function ScrollMorphHero() {
         >
           {/* Eyebrow label */}
           <p className="section-label justify-center" style={{ marginBottom: "1.75rem" }}>
-            Restaurant Photography &amp; Marketing
+            {t.hero.eyebrow}
           </p>
 
           {/* Main heading */}
@@ -302,9 +307,9 @@ export default function ScrollMorphHero() {
               marginBottom: "1.5rem",
             }}
           >
-            Visual stories that
+            {t.hero.titleLead}
             <br />
-            <em style={{ color: "var(--gold)" }}>fill tables.</em>
+            <em style={{ color: "var(--gold)" }}>{t.hero.titleEmphasis}</em>
           </h2>
 
           {/* Divider */}
@@ -330,15 +335,13 @@ export default function ScrollMorphHero() {
               letterSpacing: "0.01em",
             }}
           >
-            Cinematic food photography &amp; strategic marketing
-            <br className="hidden md:block" />
-            for restaurants that deserve to be discovered.
+            {t.hero.body}
           </p>
 
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pointer-events-auto w-full sm:w-auto">
-            <a href="#work"    className="btn-primary" style={{ opacity: 1, textAlign: "center" }}>View Our Work</a>
-            <a href="#contact" className="btn-ghost"   style={{ opacity: 1, textAlign: "center" }}>Start a Project</a>
+            <a href="#work"    className="btn-primary" style={{ opacity: 1, textAlign: "center" }}>{t.hero.viewWork}</a>
+            <a href="#contact" className="btn-ghost"   style={{ opacity: 1, textAlign: "center" }}>{t.hero.startProject}</a>
           </div>
         </motion.div>
 
@@ -413,6 +416,9 @@ export default function ScrollMorphHero() {
                 total={TOTAL_IMAGES}
                 phase={introPhase}
                 target={target}
+                label={t.hero.flipLabel}
+                detail={t.hero.flipText}
+                imageAlt={t.hero.imageAlt}
               />
             );
           })}

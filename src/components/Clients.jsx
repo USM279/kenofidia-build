@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import '../styles/Clients.css'
+import { useLanguage } from '../i18n/useLanguage'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -21,6 +22,7 @@ const clients = [
 export default function Clients() {
   const sectionRef = useRef(null)
   const headRef    = useRef(null)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -49,9 +51,9 @@ export default function Clients() {
     <section id="clients" ref={sectionRef} className="clients">
       <div className="clients-inner">
         <div className="clients-head">
-          <p className="section-label">Our Clients</p>
+          <p className="section-label">{t.clients.label}</p>
           <h2 ref={headRef} className="clients-title">
-            {['Trusted by', 'the finest.'].map((w, i) => (
+            {t.clients.title.map((w, i) => (
               <span key={i} className="sw clients-title-line">
                 <span className="sw-inner">{w}</span>
               </span>

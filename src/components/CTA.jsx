@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import '../styles/CTA.css'
+import { useLanguage } from '../i18n/useLanguage'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -11,6 +12,7 @@ export default function CTA() {
   const headRef    = useRef(null)
   const subRef     = useRef(null)
   const emailRef   = useRef(null)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -47,15 +49,15 @@ export default function CTA() {
       <div ref={lineRef} className="cta-line" aria-hidden="true" />
       <div className="cta-inner">
         <h2 ref={headRef} className="cta-headline">
-          {["Let's build", 'something', 'extraordinary.'].map((w, i) => (
+          {t.cta.title.map((w, i) => (
             <span key={i} className="sw cta-line-wrap">
               <span className="sw-inner">{w}</span>
             </span>
           ))}
         </h2>
         <p ref={subRef} className="cta-sub">
-          We take on a limited number of new clients each quarter.<br />
-          Reach out early.
+          {t.cta.bodyLine1}<br />
+          {t.cta.bodyLine2}
         </p>
         <a
           ref={emailRef}

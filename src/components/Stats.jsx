@@ -2,19 +2,15 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import '../styles/Stats.css'
+import { useLanguage } from '../i18n/useLanguage'
 
 gsap.registerPlugin(ScrollTrigger)
-
-const stats = [
-  { value: 140,  suffix: '+', label: 'Restaurants Served' },
-  { value: 8,    suffix: 'yr', label: 'Years of Experience' },
-  { value: 3.2,  suffix: 'M', label: 'Impressions Generated' },
-  { value: 98,   suffix: '%', label: 'Client Retention' },
-]
 
 export default function Stats() {
   const sectionRef = useRef(null)
   const countRefs  = useRef([])
+  const { t } = useLanguage()
+  const stats = t.stats
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -53,7 +49,7 @@ export default function Stats() {
     }, sectionRef)
 
     return () => ctx.revert()
-  }, [])
+  }, [stats])
 
   return (
     <section ref={sectionRef} className="stats">
