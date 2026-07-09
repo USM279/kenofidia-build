@@ -24,7 +24,7 @@ const IMG_WIDTH  = 90;
 const IMG_HEIGHT = 125;
 const MAX_SCROLL   = 3000;
 
-// Food & restaurant photography for Kenofidia
+// Food & restaurant photography for Kinofedia
 const IMAGES = heroImages;
 const TOTAL_IMAGES = IMAGES.length;
 

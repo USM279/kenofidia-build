@@ -4,7 +4,7 @@ import { dirname } from 'node:path'
 
 const outDir = 'public/media/qr'
 const targets = [
-  { prefix: 'kenofidia-site-qr', url: 'https://kenofidia-build.vercel.app' },
+  { prefix: 'Kinofedia-site-qr', url: 'https://Kinofedia-build.vercel.app' },
 ]
 
 const VERSION = 4

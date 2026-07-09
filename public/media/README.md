@@ -1,4 +1,4 @@
-# Kenofidia media library
+# Kinofedia media library
 
 Put final exported media in these folders, then update `src/data/portfolio.js`.
 

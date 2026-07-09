@@ -8,12 +8,12 @@ export const languageNames = {
 export const translations = {
   en: {
     meta: {
-      title: 'Kenofidia - Restaurant Photography & Marketing',
+      title: 'Kinofedia - Restaurant Photography & Marketing',
       description: 'Premium restaurant photography and marketing agency. We craft visual stories that fill tables.',
     },
     nav: {
       aria: 'Primary navigation',
-      home: 'Kenofidia home',
+      home: 'Kinofedia home',
       getInTouch: 'Get in touch',
       toggleMenu: 'Toggle menu',
       switchLanguage: 'Switch language',
@@ -42,7 +42,7 @@ export const translations = {
       body: 'Cinematic food photography & strategic marketing for restaurants that deserve to be discovered.',
       viewWork: 'View Our Work',
       startProject: 'Start a Project',
-      imageAlt: 'Kenofidia restaurant visual',
+      imageAlt: 'Kinofedia restaurant visual',
     },
     marquee: {
       aria: 'Services',
@@ -179,7 +179,7 @@ export const translations = {
       title: ['Trusted by', 'the finest.'],
     },
     testimonial: {
-      quote: 'Working with Kenofidia transformed how guests perceive us before they even walk through the door.',
+      quote: 'Working with Kinofedia transformed how guests perceive us before they even walk through the door.',
       authorName: 'Marco de Luca',
       authorRole: 'Owner, Maison Dorée London',
     },
@@ -214,23 +214,23 @@ export const translations = {
         behindScenes: 'Behind the Scenes',
       },
       alt: {
-        restaurantPhoto: 'Kenofidia food and restaurant photography',
+        restaurantPhoto: 'Kinofedia food and restaurant photography',
         restaurantFilm: 'Poster for restaurant film',
-        aiImage: 'AI-generated Kenofidia image study',
+        aiImage: 'AI-generated Kinofedia image study',
         aiFilm: 'Poster for AI film',
-        flyer: 'Kenofidia campaign flyer',
+        flyer: 'Kinofedia campaign flyer',
         behindScenes: 'Behind-the-scenes video poster',
       },
     },
   },
   nl: {
     meta: {
-      title: 'Kenofidia - Restaurantfotografie & Marketing',
+      title: 'Kinofedia - Restaurantfotografie & Marketing',
       description: 'Premium bureau voor restaurantfotografie en marketing. Wij maken visuele verhalen die tafels vullen.',
     },
     nav: {
       aria: 'Hoofdnavigatie',
-      home: 'Kenofidia startpagina',
+      home: 'Kinofedia startpagina',
       getInTouch: 'Neem contact op',
       toggleMenu: 'Menu openen of sluiten',
       switchLanguage: 'Taal wijzigen',
@@ -259,7 +259,7 @@ export const translations = {
       body: 'Cinematische foodfotografie & strategische marketing voor restaurants die ontdekt mogen worden.',
       viewWork: 'Bekijk ons werk',
       startProject: 'Start een project',
-      imageAlt: 'Restaurantbeeld van Kenofidia',
+      imageAlt: 'Restaurantbeeld van Kinofedia',
     },
     marquee: {
       aria: 'Diensten',
@@ -396,7 +396,7 @@ export const translations = {
       title: ['Vertrouwd door', 'de besten.'],
     },
     testimonial: {
-      quote: 'Samenwerken met Kenofidia veranderde hoe gasten ons ervaren nog voordat ze door de deur stappen.',
+      quote: 'Samenwerken met Kinofedia veranderde hoe gasten ons ervaren nog voordat ze door de deur stappen.',
       authorName: 'Marco de Luca',
       authorRole: 'Eigenaar, Maison Dorée London',
     },
@@ -431,11 +431,11 @@ export const translations = {
         behindScenes: 'Behind the scenes',
       },
       alt: {
-        restaurantPhoto: 'Food- en restaurantfotografie van Kenofidia',
+        restaurantPhoto: 'Food- en restaurantfotografie van Kinofedia',
         restaurantFilm: 'Poster voor restaurantfilm',
-        aiImage: 'AI-gegenereerde beeldstudie van Kenofidia',
+        aiImage: 'AI-gegenereerde beeldstudie van Kinofedia',
         aiFilm: 'Poster voor AI-film',
-        flyer: 'Campagneflyer van Kenofidia',
+        flyer: 'Campagneflyer van Kinofedia',
         behindScenes: 'Behind-the-scenes videoposter',
       },
     },

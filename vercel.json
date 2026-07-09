@@ -6,7 +6,7 @@
       "has": [
         {
           "type": "host",
-          "value": "kenofidia-build.vercel.app"
+          "value": "Kinofedia-build.vercel.app"
         }
       ],
       "destination": "https://kinofedia.nl",
@@ -17,7 +17,7 @@
       "has": [
         {
           "type": "host",
-          "value": "kenofidia-build.vercel.app"
+          "value": "Kinofedia-build.vercel.app"
         }
       ],
       "destination": "https://kinofedia.nl/:path*",

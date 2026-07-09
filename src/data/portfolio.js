@@ -67,7 +67,7 @@ const portfolioPhotos = photoDimensions.map(([storyNumber, width, height, source
     title: `Restaurant Story ${String(storyNumber).padStart(2, '0')}`,
     category: 'Food & Restaurant',
     src: override.src ?? `/media/portfolio/photos/photo-${String(sourceNumber).padStart(2, '0')}.avif`,
-    alt: `Kenofidia food and restaurant photography ${storyNumber}`,
+    alt: `Kinofedia food and restaurant photography ${storyNumber}`,
     width: override.width ?? width,
     height: override.height ?? height,
     displayIndex: String(storyNumber).padStart(2, '0'),
@@ -176,9 +176,9 @@ export const portfolioMedia = {
     }),
   ],
   flyers: [
-    { id: 'flyer-01', title: 'Campaign Flyer 01', category: 'Flyer Design', src: '/media/portfolio/flyers/flyer-01.avif', alt: 'Kenofidia campaign flyer 1', width: 864, height: 1280 },
-    { id: 'flyer-02', title: 'Campaign Flyer 02', category: 'Flyer Design', src: '/media/portfolio/flyers/flyer-02.avif', alt: 'Kenofidia campaign flyer 2', width: 912, height: 1280 },
-    { id: 'flyer-03', title: 'Campaign Flyer 03', category: 'Flyer Design', src: '/media/portfolio/flyers/flyer-03.avif', alt: 'Kenofidia campaign flyer 3', width: 864, height: 1272 },
+    { id: 'flyer-01', title: 'Campaign Flyer 01', category: 'Flyer Design', src: '/media/portfolio/flyers/flyer-01.avif', alt: 'Kinofedia campaign flyer 1', width: 864, height: 1280 },
+    { id: 'flyer-02', title: 'Campaign Flyer 02', category: 'Flyer Design', src: '/media/portfolio/flyers/flyer-02.avif', alt: 'Kinofedia campaign flyer 2', width: 912, height: 1280 },
+    { id: 'flyer-03', title: 'Campaign Flyer 03', category: 'Flyer Design', src: '/media/portfolio/flyers/flyer-03.avif', alt: 'Kinofedia campaign flyer 3', width: 864, height: 1272 },
   ],
   behindScenes: behindScenesVideos,
 }

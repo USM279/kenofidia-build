@@ -14,7 +14,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-top">
-        <a href="#hero" className="footer-logo">Kenofidia</a>
+        <a href="#hero" className="footer-logo">Kinofedia</a>
 
         <nav className="footer-nav" aria-label={t.footer.navAria}>
           {nav.map(l => (
@@ -26,7 +26,7 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <p className="footer-copy">
-          &copy; {new Date().getFullYear()} Kenofidia Studio. {t.footer.copy}
+          &copy; {new Date().getFullYear()} Kinofedia Studio. {t.footer.copy}
         </p>
         <p className="footer-tagline">
           {t.footer.tagline}

@@ -5,7 +5,7 @@ import { supportedLanguages, translations } from './translations'
 function getInitialLanguage() {
   if (typeof window === 'undefined') return 'en'
 
-  const saved = window.localStorage.getItem('kenofidia-language')
+  const saved = window.localStorage.getItem('Kinofedia-language')
   return supportedLanguages.includes(saved) ? saved : 'en'
 }
 
@@ -17,7 +17,7 @@ export function LanguageProvider({ children }) {
     document.documentElement.dir = 'ltr'
     document.title = translations[language].meta.title
     document.querySelector('meta[name="description"]')?.setAttribute('content', translations[language].meta.description)
-    window.localStorage.setItem('kenofidia-language', language)
+    window.localStorage.setItem('Kinofedia-language', language)
   }, [language])
 
   const value = useMemo(() => ({

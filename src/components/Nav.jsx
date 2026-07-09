@@ -64,7 +64,7 @@ export default function Nav() {
     <>
       <nav ref={navRef} className={`nav${open ? ' nav--open' : ''}`} aria-label={t.nav.aria}>
         <a href="#hero" className="nav-logo" aria-label={t.nav.home}>
-          <img src={logo} alt="Kenofidia" className="nav-logo-img" />
+          <img src={logo} alt="Kinofedia" className="nav-logo-img" />
         </a>
 
         <ul className="nav-links" role="list">

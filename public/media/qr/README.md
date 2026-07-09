@@ -1,9 +1,9 @@
-# Kenofidia QR Code
+# Kinofedia QR Code
 
 Printed QR target:
 
 ```text
-https://kenofidia-build.vercel.app
+https://Kinofedia-build.vercel.app
 ```
 
 These files match the already printed QR code and should not be changed.
