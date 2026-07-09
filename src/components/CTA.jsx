@@ -61,11 +61,11 @@ export default function CTA() {
         </p>
         <a
           ref={emailRef}
-          href="mailto:hello@kenofidia.com"
+          href="mailto:info@kinofedia.nl"
           className="cta-email"
           data-cursor-hover
         >
-          hello@kenofidia.com
+          info@kinofedia.nl
           <span className="cta-email-arrow">↗</span>
         </a>
       </div>

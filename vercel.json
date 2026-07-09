@@ -9,7 +9,7 @@
           "value": "kenofidia-build.vercel.app"
         }
       ],
-      "destination": "https://kenofidia.nl",
+      "destination": "https://kinofedia.nl",
       "permanent": true
     },
     {
@@ -20,7 +20,7 @@
           "value": "kenofidia-build.vercel.app"
         }
       ],
-      "destination": "https://kenofidia.nl/:path*",
+      "destination": "https://kinofedia.nl/:path*",
       "permanent": true
     }
   ]

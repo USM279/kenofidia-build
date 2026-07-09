@@ -79,7 +79,7 @@ export default function Nav() {
 
         <div className="nav-actions">
           <LanguageToggle />
-          <a href="mailto:hello@kenofidia.com" className="nav-cta">
+          <a href="mailto:info@kinofedia.nl" className="nav-cta">
             {t.nav.getInTouch}
           </a>
         </div>
@@ -111,7 +111,7 @@ export default function Nav() {
             </li>
           ))}
         </ul>
-        <a href="mailto:hello@kenofidia.com" className="nav-drawer-cta" onClick={handleLink}>
+        <a href="mailto:info@kinofedia.nl" className="nav-drawer-cta" onClick={handleLink}>
           {t.nav.getInTouch}
         </a>
         <div className="nav-drawer-language">
